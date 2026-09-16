@@ -1,0 +1,1434 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zuzana & Adriano — 21.11.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Comforter&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3ead9;
+  --ink:#183f82;
+  --terra:#b9503a;
+  --gold:#e4a522;
+  --green:#356b4f;
+  --cream:#fff9ed;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  margin:0;color:var(--ink);background:var(--paper);
+  font-family:"DM Mono",monospace;overflow-x:hidden;
+}
+main{position:relative}
+main:before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 8% 9%, rgba(185,80,58,.10) 0 2%, transparent 2.7%),
+    radial-gradient(ellipse at 92% 23%, rgba(24,63,130,.09) 0 2%, transparent 2.7%),
+    radial-gradient(ellipse at 18% 61%, rgba(228,165,34,.09) 0 2%, transparent 2.8%),
+    radial-gradient(ellipse at 86% 84%, rgba(53,107,79,.09) 0 2%, transparent 2.8%);
+}
+main>section,.scroll{position:relative;z-index:1}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+button,a{font:inherit}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+.opening{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:var(--paper);transition:opacity .9s ease,visibility .9s ease;
+}
+.opening.hide{opacity:0;visibility:hidden;pointer-events:none}
+.opening.opening-active{pointer-events:none}
+.opening.opening-active .envelope-flap{
+  transform:rotateX(168deg);
+  opacity:.25;
+}
+.opening.opening-active .envelope-paper{
+  transform:translateY(-5vh) scale(1.015);
+}
+.opening.opening-active .open-btn{
+  opacity:0;transform:translateY(8px);
+}
+.opening.opening-active .topline,
+.opening.opening-active .names,
+.opening.opening-active .date{
+  transition:opacity .35s ease;
+}
+.opening.opening-active .topline,
+.opening.opening-active .names,
+.opening.opening-active .date{opacity:0}
+
+.envelope{
+  width:min(88vw,440px);min-height:570px;padding:32px;
+  display:flex;flex-direction:column;justify-content:space-between;text-align:center;
+  background:var(--cream);border:1px solid rgba(24,63,130,.25);
+  box-shadow:0 24px 80px rgba(55,39,20,.14);
+  transform-origin:center bottom;
+  border-radius:3px;
+}
+  transition:transform 1.1s cubic-bezier(.18,.8,.2,1),opacity .7s ease;
+}
+
+.opening:after{
+  content:"";position:absolute;inset:8%;border:1px solid rgba(24,63,130,.08);
+  transform:rotate(-.6deg);pointer-events:none;
+}
+.paint-stroke{
+  position:absolute;pointer-events:none;border-radius:55%;
+  filter:blur(.2px);mix-blend-mode:multiply;
+}
+.stroke-a{
+  width:38vw;max-width:430px;height:70px;left:-8vw;top:18vh;
+  background:var(--terra);opacity:.15;transform:rotate(-12deg);
+}
+.stroke-b{
+  width:32vw;max-width:360px;height:60px;right:-7vw;bottom:16vh;
+  background:var(--ink);opacity:.12;transform:rotate(9deg);
+}
+
+.envelope{
+  position:relative;
+  perspective:1200px;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  overflow:visible;
+}
+.envelope-paper{
+  position:relative;
+  z-index:2;
+  width:min(88vw,440px);
+  min-height:570px;
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:center;
+  background:var(--cream);
+  border:1px solid rgba(24,63,130,.25);
+  box-shadow:0 24px 80px rgba(55,39,20,.14);
+  transform-origin:center bottom;
+  transition:transform 1.25s cubic-bezier(.18,.8,.2,1),opacity .8s ease;
+}
+.envelope-flap{
+  position:absolute;
+  z-index:3;
+  top:0;
+  left:0;
+  width:min(88vw,440px);
+  height:min(29vw,145px);
+  max-height:145px;
+  background:var(--paper-2);
+  border:1px solid rgba(24,63,130,.16);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  pointer-events:none;
+  transform-origin:top center;
+  transition:transform 1.05s cubic-bezier(.2,.78,.2,1),opacity .5s ease;
+}
+.opening.hide .envelope-paper{
+  transform:translateY(-18vh) rotateX(8deg) scale(.96);
+  opacity:0;
+}
+.opening.hide .envelope-flap{
+  transform:rotateX(170deg) translateY(-8px);
+  opacity:0;
+}
+.open-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+}
+.open-btn i{font-style:normal;transition:transform .3s ease}
+.open-btn:hover i{transform:translateY(3px)}
+.opening.hide .stroke-a{transform:translateX(-18vw) rotate(-12deg);opacity:0;transition:1s ease}
+.opening.hide .stroke-b{transform:translateX(18vw) rotate(9deg);opacity:0;transition:1s ease}
+.script{font-family:"Caveat",cursive;font-weight:600}
+.envelope .topline{font-size:26px;color:var(--terra)}
+.envelope .names{font-size:78px;line-height:.75;letter-spacing:-2px}
+.envelope .names span{color:var(--terra)}
+.date{font-size:11px;letter-spacing:.25em;text-transform:uppercase}
+.paint{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 25% 28%,rgba(24,63,130,.72) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 70% 30%,rgba(228,165,34,.74) 0 13%,transparent 14%),
+    radial-gradient(ellipse at 54% 70%,rgba(185,80,58,.68) 0 10%,transparent 11%),
+    radial-gradient(ellipse at 80% 75%,rgba(53,107,79,.62) 0 8%,transparent 9%),
+    repeating-linear-gradient(8deg,rgba(24,63,130,.045) 0 2px,transparent 2px 10px),
+    var(--paper);
+  border-radius:40% 60% 48% 52% / 48% 42% 58% 52%;
+}
+.paint:before{
+  content:"";position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse at 25% 28%,rgba(24,63,130,.86) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 70% 30%,rgba(228,165,34,.9) 0 13%,transparent 14%),
+    radial-gradient(ellipse at 54% 70%,rgba(185,80,58,.82) 0 10%,transparent 11%),
+    radial-gradient(ellipse at 80% 75%,rgba(53,107,79,.72) 0 8%,transparent 9%);
+  transform:rotate(-7deg) scale(1.15);opacity:.5;
+}
+.paint:after{
+  content:"";position:absolute;inset:5%;
+  border:1px dashed rgba(24,63,130,.22);
+  border-radius:45% 55% 48% 52%;
+  transform:rotate(-3deg);
+}
+.open-art{height:245px}
+.open-btn,.outline{
+  border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  border-radius:999px;padding:12px 23px;transition:.3s ease;
+}
+.open-btn:hover,.outline:hover{background:var(--ink);color:var(--cream);transform:translateY(-2px)}
+.progress{position:fixed;left:0;top:0;width:100%;height:2px;z-index:60;background:rgba(24,63,130,.08)}
+.progress span{display:block;width:0;height:100%;background:var(--terra);transform-origin:left center}
+.topbar{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:40;
+  width:min(calc(100% - 34px),var(--max));padding:17px 0;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font:600 25px "Caveat",cursive}
+.menu{border:0;background:transparent;color:var(--ink);font-size:20px}
+.menu-panel{
+  position:fixed;z-index:45;right:18px;top:58px;width:min(290px,calc(100% - 36px));
+  padding:15px 20px;background:rgba(255,249,237,.96);
+  border:1px solid rgba(24,63,130,.18);box-shadow:0 20px 60px rgba(50,35,20,.13);
+  opacity:0;transform:translateY(-12px);pointer-events:none;transition:.3s ease;
+}
+.menu-panel.open{opacity:1;transform:none;pointer-events:auto}
+.menu-panel a{display:block;padding:12px 2px;border-bottom:1px dashed rgba(24,63,130,.22);font-size:11px}
+main{max-width:var(--max);margin:auto}
+section{position:relative}
+section:after{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+  width:190px;height:22px;border-radius:55%;
+  background:var(--terra);opacity:.12;filter:blur(1px);
+  transform:rotate(-7deg);
+}
+.celebration:after{left:4%;bottom:8%}
+.event:after{right:4%;top:12%;background:var(--ink);transform:rotate(5deg)}
+.rio:after{left:38%;top:7%;background:var(--gold);transform:rotate(-3deg)}
+.honeymoon:after{right:10%;bottom:9%;background:var(--green);transform:rotate(9deg)}
+.closing:after{left:8%;top:14%;background:var(--terra);transform:rotate(6deg)}
+.celebration:before,.celebration:after,.event:after,.rio:after,.honeymoon:after,.closing:after{
+  border-radius:58% 42% 55% 45%;
+}
+.section-inner:before{
+  content:"";position:absolute;pointer-events:none;
+  width:110px;height:9px;background:var(--gold);opacity:.28;
+  border-radius:60%;transform:rotate(-4deg);
+}
+.celebration .section-inner:before{right:12%;top:15%}
+.event .section-inner:before{left:11%;bottom:12%;background:var(--terra)}
+.rio .section-inner:before{right:18%;bottom:18%;background:var(--ink)}
+.honeymoon .section-inner:before{left:14%;top:12%;background:var(--green)}
+
+.paint{will-change:transform;transform-origin:center center;transition:filter .5s ease}
+@media (pointer:fine){
+  .paint:hover{filter:saturate(1.04) contrast(1.01)}
+}
+.parallax{will-change:transform}
+.brush-reveal{clip-path:inset(100% 0 0 0);transition:clip-path 1.35s cubic-bezier(.2,.75,.2,1)}
+.brush-reveal.show{clip-path:inset(0 0 0 0)}
+.float-in{opacity:0;transform:translateY(42px) rotate(-1deg);transition:opacity 1s ease,transform 1.15s cubic-bezier(.2,.75,.2,1)}
+.float-in.show{opacity:1;transform:none}
+.hero-art{transition:transform 1.4s cubic-bezier(.2,.75,.2,1),filter 1.2s ease}
+.hero-art.live{transform:rotate(1deg) scale(1.02);filter:saturate(1.06)}
+.hero-art.hero-reveal{clip-path:inset(0 100% 0 0 round 40% 60% 48% 52% / 48% 42% 58% 52%)}
+.hero-art.hero-reveal.live{animation:paintAcross 1.35s .25s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes paintAcross{
+  to{clip-path:inset(0 0 0 0 round 40% 60% 48% 52% / 48% 42% 58% 52%)}
+}
+
+.section{padding:120px 34px}
+.hero{
+  min-height:100svh;padding:110px 34px 50px;
+  display:grid;grid-template-columns:.78fr 1.22fr;gap:35px;align-items:center;
+}
+.hero-copy{position:relative;z-index:2}
+.hero-copy .eyebrow,.hero-copy h1,.hero-copy .hero-date,.hero-copy .hero-note{
+  opacity:0;transform:translateY(22px);
+}
+.hero-copy.ink-in .eyebrow{animation:inkIn .7s .05s forwards}
+.hero-copy.ink-in h1{animation:inkIn .9s .18s forwards}
+.hero-copy.ink-in .hero-date{animation:inkIn .7s .36s forwards}
+.hero-copy.ink-in .hero-note{animation:inkIn .85s .48s forwards}
+@keyframes inkIn{
+  to{opacity:1;transform:none}
+}
+.eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+h1{
+  margin:0;font:600 clamp(85px,11vw,150px)/.69 "Caveat",cursive;
+  letter-spacing:-5px;
+}
+h1 .amp{color:var(--terra);display:inline}
+.hero-date{margin-top:32px;font-size:11px;letter-spacing:.22em}
+.hero-note{font:italic 500 22px/1.1 "Playfair Display",serif;color:#554e45;max-width:410px}
+.hero-art{height:min(75svh,730px);transform:rotate(1deg);box-shadow:15px 16px 0 rgba(185,80,58,.11)}
+.scribble{position:absolute;font:600 28px/1 "Caveat",cursive;color:var(--terra)}
+.s1{left:25px;bottom:8%;transform:rotate(-7deg)}
+.s2{right:4%;top:18%;transform:rotate(7deg)}
+.scroll{
+  text-align:center;font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  padding:12px 0 44px;position:relative
+}
+.scroll:after{
+  content:"";display:block;width:1px;height:54px;background:var(--terra);
+  opacity:.55;margin:15px auto 0;transform:rotate(2deg);
+  animation:drawline 2.2s ease-in-out infinite
+}
+.scroll b{display:block;font-size:18px;font-weight:400;margin-top:5px;animation:down 1.8s ease-in-out infinite}
+@keyframes drawline{0%,100%{height:35px;opacity:.3}50%{height:54px;opacity:.65}}
+@keyframes down{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+
+.celebration{background:transparent}
+.celebration:before{
+  content:"";position:absolute;left:-80px;top:20px;width:320px;height:100px;
+  background:var(--terra);opacity:.1;border-radius:50%;transform:rotate(-8deg)
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.title{margin:0 0 25px;font:600 clamp(58px,7vw,92px)/.8 "Caveat",cursive;letter-spacing:-2px}
+.title.terra{color:var(--terra)}
+.copy{font-size:13px;line-height:1.75;max-width:520px}
+.hand-note{font:600 27px/1 "Caveat",cursive;color:var(--terra);margin-top:28px}
+.dinner-art{height:420px;transform:rotate(-1.5deg)}
+.event{background:transparent}
+.event-art{height:370px;border-radius:20px 55px 25px 50px;transform:rotate(1.5deg)}
+.details{
+  margin-top:28px;padding:18px 0;
+  border-top:1px solid rgba(24,63,130,.34);
+  border-bottom:1px solid rgba(24,63,130,.34);
+  position:relative;
+}
+.details:before{
+  content:"";position:absolute;left:0;top:-5px;width:74px;height:7px;
+  background:var(--terra);border-radius:60%;transform:rotate(-2deg);opacity:.7
+}
+.detail{display:grid;grid-template-columns:105px 1fr;gap:10px;padding:8px 0;font-size:11px}
+.detail strong{font-weight:500;color:var(--terra)}
+.rio{background:transparent}
+.rio-art{height:455px;border-radius:52% 48% 12% 18%;transform:rotate(-1deg)}
+.rio-note{color:var(--terra)}
+.honeymoon{background:transparent}
+.honeymoon-art{height:300px;margin-top:45px;border-radius:50% 50% 42% 58%}
+.pix{background:transparent;color:var(--ink)}
+.pix:before,.pix:after{
+  content:"";position:absolute;pointer-events:none;
+  border-radius:50%;opacity:.88;background:var(--terra);
+  filter:blur(2px);
+}
+.pix:before{width:72%;height:74%;left:-16%;top:12%;transform:rotate(-6deg);opacity:.93}
+.pix:after{width:62%;height:64%;right:-13%;bottom:-12%;transform:rotate(8deg);opacity:.72}
+.pix .section{position:relative;z-index:1}
+.pix .copy{color:#3f392f}
+.pix .hand-note{color:var(--ink)!important}
+
+.pix-card{
+  background:var(--cream);color:var(--ink);padding:32px;max-width:470px;
+  box-shadow:8px 10px 0 rgba(24,63,130,.10);transform:rotate(-1deg);position:relative;
+}
+.pix-card:before{
+  content:"";position:absolute;top:-13px;left:31%;width:135px;height:24px;
+  background:rgba(228,165,34,.68);transform:rotate(-4deg);
+  filter:blur(.2px)
+}
+.pix-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
+.pix-name{font:600 35px "Caveat",cursive;margin:17px 0 5px}
+.pix-key{font-size:16px;margin-bottom:20px;word-break:break-word}
+.copy-btn{width:100%;border:0;background:var(--terra);color:var(--cream);padding:13px;border-radius:999px}
+.copied{height:18px;margin-top:10px;font-size:10px;text-align:center;opacity:0;transition:.3s}
+.copied.show{opacity:1}
+.closing{background:transparent}
+.closing .section{min-height:72svh;text-align:center;display:grid;place-items:center}
+.close-art{width:min(720px,90vw);height:270px}
+.final{font:600 clamp(60px,8vw,100px)/.8 "Caveat",cursive;margin:25px 0;color:var(--ink)}
+.final-note{font:600 28px "Caveat",cursive;color:var(--terra)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.75,.2,1)}
+.reveal.show{opacity:1;transform:none}
+.stagger > *{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .85s cubic-bezier(.2,.75,.2,1)}
+.stagger.show > *{opacity:1;transform:none}
+.stagger.show > *:nth-child(1){transition-delay:.05s}
+.stagger.show > *:nth-child(2){transition-delay:.13s}
+.stagger.show > *:nth-child(3){transition-delay:.21s}
+.stagger.show > *:nth-child(4){transition-delay:.29s}
+.stagger.show > *:nth-child(5){transition-delay:.37s}
+
+@media(max-width:760px){
+  .envelope-flap{height:125px}
+  .hero{display:flex;flex-direction:column;min-height:auto;padding:90px 20px 40px;align-items:stretch}
+  .hero-copy{padding:25px 5px 5px}
+  h1{font-size:88px;line-height:.7}
+  .hero-art{height:68svh;max-height:590px;order:-1}
+  .hero-note{font-size:19px}
+  .scribble{font-size:23px}.s1{left:12px;bottom:9%}.s2{right:5px;top:13%}
+  .section{padding:82px 20px}
+  .grid2{grid-template-columns:1fr;gap:38px}
+  .dinner-art{height:300px;order:-1}.event-art{height:260px}
+  .rio-art{height:300px;order:-1}.honeymoon-art{height:240px}
+  .title{font-size:61px}.copy{font-size:12px}
+  .detail{grid-template-columns:88px 1fr;font-size:10px}
+  .pix-card{padding:27px 21px}
+  .open-art{height:225px}.envelope{min-height:540px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .paint{translate:none!important}
+}
+
+/* V7 — cinematic painted-scroll choreography */
+.story-section{position:relative}
+.story-section .section-inner{position:relative;z-index:2}
+.story-section .paint{
+  will-change:transform,opacity,clip-path;
+  transform-origin:center center;
+}
+.story-section .section-kicker,
+.story-section h2,
+.story-section p,
+.story-section .meta-grid,
+.story-section .note,
+.story-section .pix-card,
+.story-section .map-link,
+.story-section .closing-mark{
+  will-change:transform,opacity;
+}
+.story-section .paint.scroll-paint{
+  opacity:0;
+  transform:translateY(70px) rotate(-2deg) scale(.94);
+  clip-path:inset(0 100% 0 0 round 35% 65% 48% 52% / 48% 44% 56% 52%);
+}
+.story-section.in-view .paint.scroll-paint{
+  animation:paintReveal 1.25s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.story-section .reveal-piece{
+  opacity:0;
+  transform:translateY(28px);
+}
+.story-section.in-view .reveal-piece{animation:storyIn .8s cubic-bezier(.2,.8,.2,1) forwards}
+.story-section.in-view .delay-1{animation-delay:.10s}
+.story-section.in-view .delay-2{animation-delay:.20s}
+.story-section.in-view .delay-3{animation-delay:.32s}
+.story-section.in-view .delay-4{animation-delay:.46s}
+.story-section.in-view .delay-5{animation-delay:.60s}
+.story-section .brush-accent{
+  position:absolute;pointer-events:none;
+  width:160px;height:34px;
+  border-radius:55% 40% 50% 30%;
+  background:var(--terra);
+  opacity:0;
+  transform:rotate(-7deg) scaleX(.15);
+  transform-origin:left center;
+}
+.story-section.in-view .brush-accent{
+  animation:brushIn .9s .25s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes paintReveal{
+  0%{opacity:0;transform:translateY(70px) rotate(-2deg) scale(.94);clip-path:inset(0 100% 0 0 round 35% 65% 48% 52% / 48% 44% 56% 52%)}
+  55%{opacity:1}
+  100%{opacity:1;transform:translateY(0) rotate(1deg) scale(1);clip-path:inset(0 0 0 0 round 35% 65% 48% 52% / 48% 44% 56% 52%)}
+}
+@keyframes storyIn{to{opacity:1;transform:none}}
+@keyframes brushIn{to{opacity:.72;transform:rotate(-7deg) scaleX(1)}}
+.story-section .parallax-paint{transition:transform .15s linear}
+@media(max-width:760px){
+  .story-section .paint.scroll-paint{transform:translateY(48px) scale(.96)}
+  .story-section .brush-accent{width:105px;height:25px}
+}
+@media(prefers-reduced-motion:reduce){
+  .story-section .paint.scroll-paint,
+  .story-section .reveal-piece,
+  .story-section .brush-accent{
+    opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important
+  }
+}
+
+
+/* V10 — mobile composition + Comforter titles */
+:root{--title-font:"Comforter",cursive}
+
+/* Display typography */
+h1,.title,.final{
+  font-family:var(--title-font);
+  font-weight:400;
+  letter-spacing:0;
+}
+h1{line-height:.72}
+.title{line-height:.88}
+.final{line-height:.9}
+
+/* Opening: make the invitation feel like the focal object */
+.opening{padding:22px}
+.envelope{width:min(92vw,480px);min-height:0}
+.envelope-paper{
+  width:100%;
+  min-height:min(650px,78svh);
+  padding:34px 30px 28px;
+}
+.envelope-flap{width:100%}
+.open-art{height:min(275px,34svh)}
+.envelope .topline{font-size:22px}
+.envelope .names{font-size:76px;line-height:.78}
+
+/* Don't let the story start as a giant empty canvas on phones. */
+.hero{
+  min-height:100svh;
+  align-content:center;
+  padding-top:82px;
+  padding-bottom:30px;
+}
+.hero-copy{padding-top:8px}
+.hero-art{
+  height:min(58svh,560px);
+  max-height:none;
+}
+.hero-copy .eyebrow{font-size:9px}
+.hero-date{margin-top:24px}
+.hero-note{margin-top:20px}
+
+/* Keep later scenes generous, but remove the excessive vertical gaps. */
+.section{padding:76px 20px}
+.grid2{gap:30px}
+.dinner-art{height:290px}
+.event-art{height:250px}
+.rio-art{height:285px}
+.honeymoon-art{height:220px;margin-top:34px}
+.close-art{height:230px}
+
+/* The little decorative strokes should support the composition, not dominate it. */
+section:after{width:130px;height:16px}
+.story-section .paint-mark{width:105px;height:14px}
+
+/* Animation stability: a revealed scene should stay visible. */
+.story-section.scene-in .scene-copy > *{
+  opacity:1;
+}
+.story-section.scene-in .scene-art{
+  opacity:1;
+}
+
+@media(max-width:760px){
+  .topbar{padding:13px 16px}
+  .hero{padding-left:20px;padding-right:20px}
+  h1{font-size:94px}
+  .title{font-size:68px}
+  .final{font-size:76px}
+  .hero-art{order:-1}
+  .hero-copy{text-align:left}
+  .scribble{font-size:20px}
+  .s1{left:8px;bottom:6%}
+  .s2{right:4px;top:9%}
+  .opening .envelope-paper{
+    min-height:min(620px,76svh);
+  }
+  .opening .open-art{height:min(235px,29svh)}
+  .opening .names{font-size:70px}
+  .opening .topline{font-size:19px}
+}
+
+@media(max-height:700px) and (max-width:760px){
+  .opening .envelope-paper{min-height:520px;padding:25px}
+  .opening .open-art{height:190px}
+  .opening .names{font-size:62px}
+  .hero-art{height:52svh}
+  .hero{padding-top:76px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .story-section.scene-in .scene-copy > *,
+  .story-section.scene-in .scene-art{opacity:1}
+}
+
+
+/* V11 — precise cover alignment + Comforter */
+.opening{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100svh!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.opening .envelope{
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+  margin:0 auto!important;
+  width:min(92vw,480px)!important;
+  max-width:480px!important;
+  transform:none!important;
+}
+.opening .envelope-paper{
+  margin:0!important;
+  width:100%!important;
+}
+.opening .envelope-flap{
+  left:0!important;
+  width:100%!important;
+}
+
+/* Comforter specifically on the cover name, not Caveat. */
+.opening .envelope .names,
+.opening .envelope .names span{
+  font-family:"Comforter",cursive!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+.opening .envelope .names{
+  font-size:78px!important;
+  line-height:.9!important;
+}
+
+/* Comforter for every main display title as well. */
+h1,.title,.final{
+  font-family:"Comforter",cursive!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+.title{line-height:.95!important}
+
+/* On a tall phone, give the cover enough breathing room while keeping it centered. */
+@media(max-width:760px){
+  .opening .envelope{
+    width:min(88vw,400px)!important;
+  }
+  .opening .envelope-paper{
+    min-height:min(620px,78svh)!important;
+    padding:32px 27px 27px!important;
+  }
+  .opening .open-art{height:min(235px,29svh)!important}
+  .opening .envelope .names{font-size:72px!important}
+}
+@media(max-height:700px) and (max-width:760px){
+  .opening .envelope-paper{
+    min-height:520px!important;
+    padding:25px!important;
+  }
+  .opening .open-art{height:190px!important}
+  .opening .envelope .names{font-size:62px!important}
+}
+
+
+/* V12 — mobile layout repair */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{min-width:0}
+main{width:100%;max-width:var(--max);margin:0 auto}
+
+/* The phone layout should read as a sequence of compact painted scenes. */
+@media(max-width:760px){
+  .hero{
+    min-height:auto!important;
+    height:auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:0!important;
+    padding:82px 20px 36px!important;
+  }
+  .hero-art{
+    order:0!important;
+    width:100%!important;
+    height:360px!important;
+    max-height:none!important;
+    margin:0 0 28px!important;
+  }
+  .hero-copy{
+    order:1!important;
+    padding:0 4px 0!important;
+  }
+  .hero-copy h1{
+    font-size:78px!important;
+    line-height:.78!important;
+    margin:0!important;
+  }
+  .hero-copy .eyebrow{margin-bottom:12px!important}
+  .hero-date{font-size:9px!important;margin-top:20px!important}
+  .hero-note{font-size:17px!important;line-height:1.25!important;margin-top:16px!important;max-width:340px!important}
+  .scroll{padding:12px 0 28px!important}
+
+  .section{
+    padding:62px 20px!important;
+  }
+  .grid2{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:24px!important;
+  }
+
+  /* Art first in each scene, but never hidden waiting for JS. */
+  .dinner-art,.event-art,.rio-art,.honeymoon-art,.close-art{
+    opacity:1!important;
+    clip-path:none!important;
+    transform:none!important;
+    animation:none!important;
+  }
+  .dinner-art{height:260px!important;order:-1!important}
+  .event-art{height:235px!important;order:-1!important}
+  .rio-art{height:285px!important;order:-1!important}
+  .honeymoon-art{height:210px!important;margin-top:28px!important}
+  .close-art{height:220px!important}
+
+  .section .reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+
+  .title{
+    font-size:62px!important;
+    line-height:.88!important;
+    margin-bottom:20px!important;
+  }
+  .copy{
+    font-size:11px!important;
+    line-height:1.65!important;
+  }
+  .hand-note{font-size:22px!important;margin-top:18px!important}
+
+  .details{
+    margin-top:18px!important;
+    padding:12px 0!important;
+  }
+  .detail{
+    grid-template-columns:82px 1fr!important;
+    gap:8px!important;
+    padding:7px 0!important;
+    font-size:9px!important;
+    line-height:1.45!important;
+  }
+  .outline{
+    display:inline-flex!important;
+    margin-top:15px!important;
+    font-size:9px!important;
+    padding:10px 18px!important;
+  }
+
+  .honeymoon .section{
+    min-height:0!important;
+  }
+  .pix-card{
+    max-width:none!important;
+    width:100%!important;
+    transform:none!important;
+  }
+  .pix:before{width:70%;height:45%;left:-20%;top:30%}
+  .pix:after{width:55%;height:38%;right:-15%;bottom:-8%}
+
+  .closing .section{
+    min-height:0!important;
+    padding-top:72px!important;
+    padding-bottom:90px!important;
+  }
+  .final{
+    font-size:68px!important;
+  }
+
+  /* Decorative marks stay close to the scene instead of creating apparent gaps. */
+  section:after{width:90px!important;height:12px!important}
+}
+
+/* On desktop, retain the cinematic reveal; on mobile reliability wins. */
+@media(min-width:761px){
+  .story-section .scene-art{
+    opacity:1;
+    clip-path:none;
+    transform:none;
+  }
+}
+
+/* Make the section reveal system independent from the old observer. */
+.reveal{transition:opacity .8s ease,transform .9s cubic-bezier(.2,.75,.2,1)}
+.reveal.show{opacity:1;transform:none}
+
+
+/* V13 — final mobile stabilization */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+*{max-width:100%}
+
+/* Keep the fixed navigation from visually colliding with the artwork. */
+.topbar{pointer-events:none}
+.topbar a,.topbar button{pointer-events:auto}
+
+/* HERO: one clear composition */
+@media(max-width:760px){
+  .hero{
+    width:100%!important;
+    min-height:0!important;
+    padding:74px 18px 26px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+  }
+  .hero-art{
+    width:100%!important;
+    height:330px!important;
+    min-height:330px!important;
+    margin:0 0 24px!important;
+    order:0!important;
+    transform:rotate(1deg)!important;
+  }
+  .hero-copy{
+    width:100%!important;
+    padding:0 3px!important;
+    order:1!important;
+  }
+  .hero-copy h1{
+    font-family:"Comforter",cursive!important;
+    font-size:82px!important;
+    line-height:.78!important;
+    letter-spacing:0!important;
+    width:100%!important;
+  }
+  /* Do not force the ampersand onto a third line. */
+  .hero-copy h1 .amp{
+    display:inline!important;
+    color:var(--terra)!important;
+  }
+  .hero-date{font-size:9px!important;letter-spacing:.18em!important;margin-top:18px!important}
+  .hero-note{font-size:16px!important;line-height:1.3!important;margin:14px 0 0!important}
+  .scroll{padding:10px 0 24px!important}
+
+  /* All story sections use the same compact rhythm. */
+  .section{
+    width:100%!important;
+    padding:58px 18px!important;
+  }
+  .grid2{
+    width:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:22px!important;
+  }
+  .grid2 > *{width:100%!important;min-width:0!important}
+
+  /* Make the placeholder artworks unmistakably present until real paintings arrive. */
+  .paint.dinner-art,
+  .paint.event-art,
+  .paint.rio-art,
+  .paint.honeymoon-art,
+  .paint.close-art{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    clip-path:none!important;
+    animation:none!important;
+  }
+  .paint.dinner-art{
+    height:245px!important;
+    min-height:245px!important;
+    order:-1!important;
+  }
+  .paint.event-art{
+    height:225px!important;
+    min-height:225px!important;
+    order:-1!important;
+  }
+  .paint.rio-art{
+    height:270px!important;
+    min-height:270px!important;
+    order:-1!important;
+  }
+  .paint.honeymoon-art{
+    height:205px!important;
+    min-height:205px!important;
+    margin-top:24px!important;
+  }
+  .paint.close-art{
+    height:205px!important;
+    min-height:205px!important;
+  }
+
+  .section .reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+  .title{
+    font-family:"Comforter",cursive!important;
+    font-size:61px!important;
+    line-height:.9!important;
+    letter-spacing:0!important;
+    margin:0 0 17px!important;
+  }
+  .copy{
+    font-size:11px!important;
+    line-height:1.6!important;
+  }
+  .hand-note{font-size:21px!important;line-height:1!important;margin-top:17px!important}
+
+  /* Event information stays readable. */
+  .details{
+    margin-top:15px!important;
+    padding:11px 0!important;
+  }
+  .detail{
+    grid-template-columns:78px minmax(0,1fr)!important;
+    font-size:9px!important;
+    line-height:1.4!important;
+    padding:6px 0!important;
+  }
+  .outline{
+    font-size:9px!important;
+    padding:9px 17px!important;
+    margin-top:12px!important;
+  }
+
+  /* Honeymoon: text, then painting, no giant dead zone. */
+  .honeymoon .section{text-align:center!important}
+  .honeymoon .section > .reveal{margin:0 auto!important;max-width:340px!important}
+  .honeymoon-art{width:100%!important}
+
+  /* Pix becomes one clean paper card. */
+  .pix .grid2{gap:28px!important}
+  .pix-card{
+    width:100%!important;
+    max-width:none!important;
+    padding:25px 20px!important;
+    transform:rotate(-.5deg)!important;
+  }
+  .pix-name{font-size:31px!important}
+  .pix-key{font-size:14px!important}
+
+  /* Closing should not inherit the desktop 72svh composition. */
+  .closing .section{
+    min-height:0!important;
+    padding:62px 18px 88px!important;
+    display:block!important;
+  }
+  .closing .section > .reveal{
+    text-align:center!important;
+  }
+  .final{
+    font-family:"Comforter",cursive!important;
+    font-size:70px!important;
+    line-height:.9!important;
+    margin:20px 0!important;
+  }
+  .final-note{font-size:25px!important}
+}
+
+/* Smaller phones */
+@media(max-width:380px){
+  .hero-art{height:300px!important;min-height:300px!important}
+  .hero-copy h1{font-size:74px!important}
+  .title{font-size:56px!important}
+  .paint.dinner-art{height:220px!important;min-height:220px!important}
+  .paint.event-art{height:205px!important;min-height:205px!important}
+}
+
+/* Respect reduced motion, but never hide content. */
+@media(prefers-reduced-motion:reduce){
+  .hero-copy h1,.title,.final,
+  .paint.dinner-art,.paint.event-art,.paint.rio-art,
+  .paint.honeymoon-art,.paint.close-art{
+    opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important;
+  }
+}
+
+
+/* V14 — event map button alignment */
+.outline{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  margin-left:115px;
+  margin-top:16px;
+}
+@media(max-width:760px){
+  .outline{
+    margin-left:90px!important;
+    margin-top:12px!important;
+  }
+}
+
+
+/* V15 — hero mobile typography repair */
+@media(max-width:760px){
+  .hero{
+    overflow:hidden!important;
+    padding-top:74px!important;
+    padding-bottom:34px!important;
+  }
+  .hero-copy{
+    position:relative!important;
+    z-index:5!important;
+  }
+  .hero-copy h1{
+    font-family:"Comforter",cursive!important;
+    font-size:68px!important;
+    line-height:.72!important;
+    letter-spacing:0!important;
+    margin:0 0 25px!important;
+    max-width:100%!important;
+  }
+  .hero-copy .amp{
+    display:inline!important;
+    margin:0 3px!important;
+  }
+  .hero-date{
+    position:relative!important;
+    z-index:6!important;
+    margin:0 0 17px!important;
+  }
+  .hero-note{
+    position:relative!important;
+    z-index:6!important;
+    display:block!important;
+    margin:0!important;
+    max-width:330px!important;
+    font-size:15px!important;
+    line-height:1.28!important;
+  }
+
+  /* The handwritten annotation was colliding with the note. */
+  .hero .s1{
+    left:8px!important;
+    bottom:18px!important;
+    top:auto!important;
+    font-size:17px!important;
+    z-index:2!important;
+  }
+  .hero .s2{
+    right:5px!important;
+    top:8px!important;
+    font-size:16px!important;
+    line-height:.95!important;
+    z-index:2!important;
+  }
+
+  /* Give the hero enough height for the copy, but don't create another giant gap. */
+  .hero-art{
+    height:315px!important;
+    min-height:315px!important;
+    margin-bottom:22px!important;
+  }
+  .scroll{
+    position:relative!important;
+    z-index:4!important;
+    padding-top:4px!important;
+  }
+}
+
+@media(max-width:380px){
+  .hero-copy h1{font-size:62px!important}
+  .hero-note{font-size:14px!important}
+}
+
+
+/* V16 — real paintings */
+.paint.real-art{
+  background-color:var(--paper);
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+}
+.paint.real-art:before,
+.paint.real-art:after{display:none!important}
+
+/* The artwork itself already carries the paper tone; keep the page on the same warm stock. */
+:root{--paper:#f4ead8}
+body{background:var(--paper)}
+main:before{opacity:.55}
+
+/* Opening portrait: show the supplied invitation artwork without cropping faces. */
+.opening .open-art.real-art{
+  background-size:contain;
+  background-position:center;
+}
+
+/* Real paintings need their own proportions rather than the old abstract blob shape. */
+.hero-art.real-art{
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.dinner-art.real-art{
+  border-radius:0!important;
+}
+.event-art.real-art{
+  border-radius:0!important;
+}
+.rio-art.real-art{
+  border-radius:0!important;
+}
+.honeymoon-art.real-art{
+  border-radius:0!important;
+}
+.close-art.real-art{
+  border-radius:0!important;
+}
+
+@media(max-width:760px){
+  .hero-art.real-art{height:315px!important}
+  .dinner-art.real-art{height:245px!important}
+  .event-art.real-art{height:225px!important}
+  .rio-art.real-art{height:270px!important}
+  .honeymoon-art.real-art{height:205px!important}
+  .close-art.real-art{height:205px!important}
+}
+
+
+/* V17 — opening composition */
+.opening{
+  background:var(--paper)!important;
+  padding:0!important;
+}
+.opening:after{display:none!important}
+.opening .paint-stroke{opacity:.16!important}
+.opening .envelope{
+  width:min(94vw,720px)!important;
+  min-height:0!important;
+  height:100svh!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.opening .envelope-flap{display:none!important}
+.opening .envelope-paper{
+  width:min(94vw,680px)!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:42px 26px 34px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  text-align:center!important;
+  transform:none!important;
+}
+.opening .topline{
+  order:0;
+  margin:0 0 24px!important;
+  font-size:20px!important;
+  color:var(--terra)!important;
+}
+.opening .open-art{
+  order:1;
+  width:min(92vw,640px)!important;
+  height:min(56svh,620px)!important;
+  min-height:0!important;
+  margin:0 auto 18px!important;
+  border-radius:0!important;
+  background-color:transparent!important;
+  background-position:center center!important;
+  background-size:contain!important;
+  box-shadow:none!important;
+}
+.opening .names{
+  order:2;
+  margin:0!important;
+  font-size:clamp(72px,10vw,112px)!important;
+  line-height:.78!important;
+  color:var(--ink)!important;
+}
+.opening .names span{color:var(--terra)!important}
+.opening .date{
+  order:3;
+  margin:18px 0 28px!important;
+  color:var(--ink)!important;
+}
+.opening .open-btn{
+  order:4;
+  min-width:min(78vw,430px)!important;
+  padding:13px 26px!important;
+  background:transparent!important;
+  color:var(--ink)!important;
+}
+.opening .open-btn:hover{
+  background:var(--ink)!important;
+  color:var(--cream)!important;
+}
+.opening.opening-active .envelope-paper{
+  transform:translateY(-1vh) scale(1.01)!important;
+}
+.opening.hide .envelope-paper{
+  transform:translateY(-10vh) scale(.98)!important;
+  opacity:0!important;
+}
+@media(max-width:760px){
+  .opening .envelope-paper{
+    width:100%!important;
+    padding:28px 16px 24px!important;
+  }
+  .opening .topline{
+    font-size:16px!important;
+    margin-bottom:12px!important;
+  }
+  .opening .open-art{
+    width:100%!important;
+    height:50svh!important;
+    max-height:510px!important;
+    margin-bottom:13px!important;
+  }
+  .opening .names{
+    font-size:clamp(60px,17vw,84px)!important;
+    line-height:.76!important;
+  }
+  .opening .date{
+    font-size:9px!important;
+    margin:13px 0 20px!important;
+  }
+  .opening .open-btn{
+    min-width:72vw!important;
+    font-size:10px!important;
+  }
+}
+@media(max-height:700px) and (max-width:760px){
+  .opening .topline{margin-bottom:8px!important}
+  .opening .open-art{height:42svh!important;max-height:390px!important}
+  .opening .names{font-size:60px!important}
+  .opening .date{margin:9px 0 14px!important}
+  .opening .open-btn{padding:10px 20px!important}
+}
+
+</style>
+</head>
+<body>
+
+<div class="opening" id="opening">
+  <div class="paint-stroke stroke-a"></div>
+  <div class="paint-stroke stroke-b"></div>
+  <div class="envelope" id="envelope">
+    <div class="envelope-flap"></div>
+    <div class="envelope-paper">
+      <div class="topline script">um novo capítulo começa</div>
+      <div class="paint open-art real-art" data-art="casal" role="img" aria-label="Pintura de Zuzana e Adriano"></div>
+      <div>
+        <div class="names script">Zuzana <span>&amp;</span> Adriano</div>
+        <div class="date">21 · 11 · 2026</div>
+      </div>
+      <button class="open-btn" id="open"><span>abrir convite</span><i>↓</i></button>
+    </div>
+  </div>
+</div>
+
+<div class="progress" id="progress"><span></span></div>
+<header class="topbar">
+  <a href="#top" class="logo">Z + A</a>
+  <button class="menu" id="menu" aria-label="Abrir menu">☰</button>
+</header>
+
+<nav class="menu-panel" id="panel">
+  <a href="#celebracao">A gente já disse sim</a>
+  <a href="#encontro">O encontro</a>
+  <a href="#rio">Rio de Janeiro</a>
+  <a href="#pix">Nosso Pix</a>
+  <a href="#fim">Até lá</a>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow reveal-piece delay-1">uma celebração da nossa história</div>
+    <h1>Zuzana <span class="amp">&amp;</span> Adriano</h1>
+    <div class="hero-date">21 · 11 · 2026 · 18H30</div>
+    <p class="hero-note">A gente já disse sim. Agora queremos celebrar com as pessoas que amamos.</p>
+  </div>
+  <div class="paint hero-art real-art reveal brush-reveal hero-reveal" data-art="casal"></div>
+  <div class="scribble s1">vamos celebrar ♥</div>
+  <div class="scribble s2">bons amigos,<br>boa comida,<br>boas histórias</div>
+</section>
+<div class="scroll"><span>role para continuar</span><b>↓</b></div>
+
+<section class="celebration story-section" id="celebracao">
+<div class="section grid2">
+  <div class="reveal">
+    <h2 class="title terra">Vamos celebrar!</h2>
+    <p class="copy">A gente já disse sim. Agora queremos reunir as pessoas que amamos para um jantar, brindar à nossa história e viver uma noite especial juntos.</p>
+    <p class="hand-note">sem cerimônia, com muito amor.</p>
+  </div>
+  <div class="paint dinner-art real-art reveal brush-reveal" data-art="jantar"></div>
+</div>
+</section>
+
+<section class="event story-section" id="encontro">
+<div class="section grid2">
+  <div class="paint event-art real-art reveal brush-reveal" data-art="local"></div>
+  <div class="reveal">
+    <h2 class="title">O encontro</h2>
+    <div class="details stagger reveal">
+      <div class="detail"><strong>data</strong><span>21 de novembro de 2026</span></div>
+      <div class="detail"><strong>hora</strong><span>18h30</span></div>
+      <div class="detail"><strong>onde</strong><span>Avenida General Barreto Viana, 1268<br>Porto Alegre — RS<br>Salão de festas</span></div>
+      <div class="detail"><strong>dress code</strong><span>Cocktail chic</span></div>
+    </div>
+    <a class="outline" href="https://www.google.com/maps/search/?api=1&query=Avenida+General+Barreto+Viana+1268+Porto+Alegre" target="_blank" rel="noreferrer">ver no mapa →</a>
+  </div>
+</div>
+</section>
+
+<section class="rio story-section" id="rio">
+<div class="section grid2">
+  <div class="reveal">
+    <div class="eyebrow">e depois...</div>
+    <h2 class="title">Rio de Janeiro <span class="rio-note">♥</span></h2>
+    <p class="copy">Depois da celebração, vamos para o Rio. Sol, praia, comida boa e alguns dias para aproveitar essa nova fase da nossa história.</p>
+    <p class="hand-note">qualquer motivo é bom para viajar ♥</p>
+  </div>
+  <div class="paint rio-art real-art reveal brush-reveal" data-art="rio1"></div>
+</div>
+</section>
+
+<section class="honeymoon story-section" id="honeymoon">
+<div class="section">
+  <div class="reveal" style="max-width:690px;margin:auto;text-align:center">
+    <h2 class="title terra">Alguns dias só nossos.</h2>
+    <p class="copy" style="margin:auto">Nossa lua de mel também é feita de encontros. Mais do que presentes, queremos colecionar experiências e transformar essa viagem em novas memórias.</p>
+  </div>
+  <div class="paint honeymoon-art real-art reveal brush-reveal" data-art="rio2"></div>
+</div>
+</section>
+
+<section class="pix story-section" id="pix">
+<div class="section grid2">
+  <div class="reveal">
+    <h2 class="title" style="color:var(--gold)">Mais histórias,<br>menos coisas.</h2>
+    <p class="copy">Mais do que presentes, queremos colecionar experiências. Se quiser fazer parte dessa viagem, você pode contribuir para a nossa lua de mel.</p>
+    <p class="hand-note" style="color:var(--gold)">um gesto que vira memória.</p>
+  </div>
+  <div class="pix-card reveal">
+    <div class="pix-label">nosso pix</div>
+    <div class="pix-name">Adriano Silva dos Anjos</div>
+    <div class="pix-key">zuzdri@gmail.com</div>
+    <button class="copy-btn" id="copy">copiar chave Pix</button>
+    <div class="copied" id="copied">Chave Pix copiada ♥</div>
+  </div>
+</div>
+</section>
+
+<section class="closing story-section" id="fim">
+<div class="section">
+  <div class="reveal">
+    <div class="paint close-art real-art brush-reveal" data-art="casal"></div>
+    <div class="final">Até lá, com amor.</div>
+    <div class="final-note">Zuzana &amp; Adriano</div>
+    <div class="date" style="margin-top:16px">21 · 11 · 2026</div>
+  </div>
+</div>
+</section>
+</main>
+
+<script>
+document.body.style.overflow='hidden';
+const opening=document.getElementById('opening');
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  opening.classList.add('hide');
+  document.body.style.overflow='';
+  document.querySelector('.hero-copy')?.classList.add('ink-in');
+  document.querySelector('.hero-art')?.classList.add('live');
+}
+document.getElementById('open').addEventListener('click',()=>{
+  if(opening.classList.contains('opening-active') || opening.classList.contains('hide')) return;
+  opening.classList.add('opening-active');
+
+  // Let the paper physically open before removing the cover.
+  setTimeout(()=>{
+    opening.classList.add('hide');
+    document.body.style.overflow='';
+    window.scrollTo({top:0,behavior:'auto'});
+    revealHero();
+  },1050);
+});
+const menu=document.getElementById('menu'),panel=document.getElementById('panel');
+menu.addEventListener('click',()=>panel.classList.toggle('open'));
+panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>panel.classList.remove('open')));
+
+const heroArt=document.querySelector('.hero-art');
+const heroCopy=document.querySelector('.hero-copy');
+const paperArt=[...document.querySelectorAll('.paint')];
+if(window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  window.addEventListener('mousemove',(e)=>{
+    const x=(e.clientX/window.innerWidth-.5);
+    const y=(e.clientY/window.innerHeight-.5);
+    if(heroArt) heroArt.style.transform=`rotate(1deg) translate(${x*5}px,${y*4}px)`;
+  },{passive:true});
+}
+let heroRevealed=false;
+function revealHero(){
+  if(heroRevealed) return;
+  heroRevealed=true;
+  heroArt?.classList.add('live');
+  heroCopy?.classList.add('ink-in');
+}
+
+const progress=document.querySelector('#progress span');
+const parallaxItems=[...document.querySelectorAll('.paint')];
+
+function motionFrame(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  const p=max>0 ? window.scrollY/max : 0;
+  progress.style.width=(p*100)+'%';
+
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  parallaxItems.forEach((el,i)=>{
+    const r=el.getBoundingClientRect();
+    const center=window.innerHeight/2;
+    const distance=(r.top+r.height/2-center);
+    const amount=Math.max(-14,Math.min(14,-distance*.018));
+    el.style.translate=`0 ${amount}px`;
+  });
+}
+window.addEventListener('scroll',motionFrame,{passive:true});
+motionFrame();
+
+document.getElementById('copy').addEventListener('click',async()=>{
+  const key='zuzdri@gmail.com';
+  try{await navigator.clipboard.writeText(key)}
+  catch{
+    const ta=document.createElement('textarea');ta.value=key;document.body.appendChild(ta);
+    ta.select();document.execCommand('copy');ta.remove();
+  }
+  const msg=document.getElementById('copied');
+  msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),2600);
+});
+const reveals=document.querySelectorAll('.reveal');
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add('show');
+  });
+},{threshold:.12});
+reveals.forEach(el=>revealObserver.observe(el));
+
+
+
+
+
+const storyScenes=document.querySelectorAll('.story-section');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const storyObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('scene-in');
+        storyObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
+  storyScenes.forEach(scene=>storyObserver.observe(scene));
+}else{
+  storyScenes.forEach(scene=>scene.classList.add('scene-in'));
+}
+
+
+/* Load real artwork from /imgs without changing the HTML structure. */
+document.querySelectorAll('.real-art').forEach(el=>{
+  const name=el.dataset.art;
+  if(name) el.style.backgroundImage=`url("imgs/${name}.png")`;
+});
+
+</script>
+</body>
+</html>
