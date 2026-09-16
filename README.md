@@ -1,13 +1,28 @@
-# Zuzana & Adriano — V13
+# zuedri-wedding — Zuzana & Adriano
 
-Rodada de estabilização baseada nos screenshots reais do iPhone 16 Pro Max.
+Site da celebração de Zuzana & Adriano — 21.11.2026.
 
-Ajustes:
-- elimina os grandes vazios causados por reveal/parallax no mobile;
-- garante que todas as pinturas-placeholder tenham tamanho e visibilidade explícitos;
-- Hero fica compacto e com hierarquia clara;
-- Comforter permanece nos títulos;
-- o `&` do nome do Hero não é mais forçado para uma terceira linha;
-- seções empilhadas com espaçamento consistente;
-- evento, Pix e encerramento ficam contidos na largura do aparelho;
-- reduz efeitos que poderiam brigar com o layout mobile.
+Projeto em HTML, CSS e JavaScript, com direção visual de pintura navegável e foco em experiência mobile.
+
+## Estado atual
+
+- abertura com animação de convite;
+- tipografia Comforter nos títulos principais;
+- pinturas e ilustrações em `/imgs`;
+- layout responsivo para celular e desktop;
+- navegação em uma única página;
+- seções de celebração, evento, Rio, lua de mel e Pix.
+
+## Estrutura
+
+```text
+zuedri-wedding/
+├── index.html
+└── imgs/
+    ├── convite.png
+    ├── topo.png
+    ├── jantar.png
+    ├── local.png
+    ├── rio1.png
+    └── rio2.png
+```
