@@ -70,6 +70,7 @@
     .grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
     .grid-copy { max-width:540px; }
     .grid-art { width:100%; aspect-ratio:763/623; background-position:center; background-repeat:no-repeat; background-size:contain; }
+    .jantar-art { aspect-ratio:664/849; }
     .grid.swap .grid-copy { order:1; }
     .grid.swap .grid-art { order:2; }
     .title { font-size:clamp(50px,5.5vw,72px); line-height:.88; margin:0 0 16px; }
@@ -120,6 +121,7 @@
       .grid>* { width:100%; }
       .grid-copy,.grid-art,.grid.swap .grid-copy,.grid.swap .grid-art { order:initial!important; }
       .grid-art { aspect-ratio:763/623; }
+      .jantar-art { aspect-ratio:664/849; }
       .title { font-size:46px; line-height:.9; margin-bottom:13px; }
       .copy { font-size:13px; line-height:1.6; }
       .hand { font-size:28px; margin-top:13px; }
@@ -203,10 +205,9 @@
 
     <section class="section" id="celebracao">
       <div class="grid">
-        <div class="grid-art reveal-art" style="background-image:url('imgs/jantar.png')"></div>
+        <div class="grid-art jantar-art reveal-art" style="background-image:url('imgs/jantar.png')"></div>
         <div class="grid-copy copy reveal">
-          
-          <h2 class="title">Dia D, <span class="title terra">a celebração</span></h2>
+          <h2 class="title">Dia D,<br><span class="title terra">a celebração</span></h2>
           <p>Cada dia tem um motivo pra celebrar, mas nós gostamos das coisas extra de vez em quando, e esse é o momento.</p>
           <div class="details">
             <div class="detail">
