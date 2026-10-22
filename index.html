@@ -94,6 +94,10 @@
     .pix-name { font-size:38px; margin:15px 0 5px; white-space:nowrap; }
     .pix-key { font-size:15px; margin-bottom:18px; }
     .copy-btn { width:100%; border:0; background:var(--terra); color:var(--cream); padding:14px; border-radius:999px; font-size:15px; }
+    .wise-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:12px 18px; margin-top:13px; border-radius:999px; background:#9fe870; color:#163300; font:700 17px/1.3 Arial,Helvetica,sans-serif; transition:filter .2s ease,transform .2s ease; }
+    .wise-btn:hover { filter:brightness(.95); transform:translateY(-1px); }
+    .wise-btn:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
+    .wise-logo { display:block; width:24px; height:24px; flex:none; fill:currentColor; }
     .copied { height:18px; margin-top:9px; text-align:center; font-size:15px; opacity:0; }
     .copied.show { opacity:1; }
 
@@ -261,6 +265,10 @@
         <div class="pix-key">zuzdri@gmail.com</div>
         <button class="copy-btn" id="copyPix">Copiar chave Pix</button>
         <div class="copied" id="copyConfirm" aria-live="polite">Chave Pix copiada ♥</div>
+        <a class="wise-btn" href="https://wise.com/pay/me/adrianos640" target="_blank" rel="noopener noreferrer" aria-label="Enviar presente pela Wise (abre em nova aba)">
+          <svg class="wise-logo" viewBox="0 0 24 24" role="img" aria-label="Logo Wise" xmlns="http://www.w3.org/2000/svg"><path d="M6.488 7.469 0 15.05h11.585l1.301-3.576H7.922l3.033-3.507.01-.092L8.993 4.48h8.873l-6.878 18.925h4.706L24 .595H2.543l3.945 6.874Z"/></svg>
+          <span>Enviar pela Wise ↗</span>
+        </a>
       </div>
     </section>
 
