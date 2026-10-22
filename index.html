@@ -56,6 +56,11 @@
     .topbar { position:fixed; top:0; left:50%; transform:translateX(-50%); z-index:40; width:min(calc(100% - 34px),var(--max)); padding:16px 0; display:flex; justify-content:space-between; align-items:center; }
     .logo { font:400 30px var(--font-display); }
     .menu { border:0; background:transparent; color:var(--ink); font-size:15px; }
+    .top-actions { display:flex; align-items:center; gap:13px; }
+    .lang-switch { display:inline-flex; align-items:center; gap:2px; padding:3px; border:1px solid rgba(24,63,130,.32); border-radius:999px; background:rgba(255,249,237,.94); }
+    .lang-btn { border:0; border-radius:999px; background:transparent; color:var(--ink); font:400 12px/1 var(--font-body); min-width:37px; min-height:30px; padding:8px; transition:background-color .2s ease,color .2s ease; }
+    .lang-btn.is-active { background:var(--ink); color:var(--cream); }
+    .lang-btn:focus-visible { outline:2px solid var(--terra); outline-offset:2px; }
     .panel { position:fixed; z-index:45; right:18px; top:58px; width:min(290px,calc(100% - 36px)); padding:12px 18px; background:rgba(255,249,237,.97); border:1px solid rgba(24,63,130,.18); box-shadow:0 20px 60px rgba(50,35,20,.13); opacity:0; transform:translateY(-10px); pointer-events:none; transition:.25s; }
     .panel.open { opacity:1; transform:none; pointer-events:auto; }
     .panel a { display:block; padding:13px 2px; border-bottom:1px dashed rgba(24,63,130,.2); font-size:15px; }
@@ -115,6 +120,8 @@
       .topbar { padding:13px 16px; }
       .logo { font-size:27px; }
       .menu { font-size:15px; }
+      .top-actions { gap:8px; }
+      .lang-btn { min-width:34px; min-height:29px; font-size:11px; padding:7px; }
       .section { padding:52px 18px; }
       .grid,.grid.swap { display:flex; flex-direction:column; gap:10px; }
       .grid>* { width:100%; }
@@ -159,7 +166,7 @@
   <div class="loading" id="loading">
     <div class="loader-inner">
       <div class="loader-mark"></div>
-      <div class="loader-word">a nossa pintura</div>
+      <div class="loader-word" data-i18n="loading">a nossa pintura</div>
       <div class="loader-line"><span></span></div>
     </div>
   </div>
@@ -169,30 +176,35 @@
     <div class="stroke stroke-b"></div>
     <div class="cover">
       <div class="cover-inner">
-        <div class="cover-top">um novo capítulo começa</div>
+        <div class="cover-top" data-i18n="cover_intro">um novo capítulo começa</div>
         <div class="cover-art"></div>
         <div class="cover-names">Zuzana <span>&amp;</span> Adriano</div>
         <div class="cover-date">21 · 11 · 2026</div>
         <br>
-        <p>Queremos celebrar o nosso casamento, a nossa união e o nosso amor, com toda a familia e os amigos queridos.</p>
-        </p>
+        <p data-i18n="cover_message">Queremos celebrar o nosso casamento, a nossa união e o nosso amor, com toda a família e os amigos queridos.</p>
         <br>
-        <button class="open-btn" id="open">abrir convite ↓</button>
+        <button class="open-btn" id="open" data-i18n="open_invitation">abrir convite ↓</button>
       </div>
     </div>
   </div>
 
   <header class="topbar">
     <a class="logo" href="#top">Z + A</a>
-    <button class="menu" id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <div class="top-actions">
+      <div class="lang-switch" role="group" aria-label="Idioma do site" data-i18n-aria-label="language_selector">
+        <button class="lang-btn is-active" type="button" data-lang="pt" lang="pt-BR" aria-label="Português" aria-pressed="true">PT</button>
+        <button class="lang-btn" type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+      </div>
+      <button class="menu" id="menu" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
   </header>
 
   <nav class="panel" id="panel">
-    <a href="#celebracao">A gente já disse sim</a>
-    <a href="#encontro">O encontro</a>
-    <a href="#rio">Rio de Janeiro</a>
-    <a href="#pix">Lua de mel</a>
-    <a href="#fim">Até lá</a>
+    <a href="#celebracao" data-i18n="nav_yes">A gente já disse sim</a>
+    <a href="#encontro" data-i18n="nav_meeting">O encontro</a>
+    <a href="#rio" data-i18n="nav_rio">Rio de Janeiro</a>
+    <a href="#pix" data-i18n="nav_honeymoon">Lua de mel</a>
+    <a href="#fim" data-i18n="nav_end">Até lá</a>
   </nav>
 
   <div class="progress"><span id="progressBar"></span></div>
@@ -200,26 +212,26 @@
   <main id="top">
     <section class="section" id="celebracao">
       <div class="celebracao-layout">
-        <div class="grid-art jantar-art reveal-art" role="img" aria-label="Ilustração da celebração em pintura" style="background-image:url('imgs/jantar_v2.png')"></div>
+        <div class="grid-art jantar-art reveal-art" role="img" aria-label="Ilustração da celebração em pintura" data-i18n-aria-label="celebration_image" style="background-image:url('imgs/jantar_v2.png')"></div>
         <div class="grid-copy copy reveal">
-          <h2 class="title">Dia D,<br><span class="title terra">a celebração</span></h2>
-          <p>Cada dia tem um motivo pra celebrar, mas nós gostamos das coisas extra de vez em quando, e esse é o momento.</p>
-          <div class="details">
+          <h2 class="title" data-i18n-leading="celebration_title_a">Dia D,<br><span class="title terra" data-i18n="celebration_title_b">a celebração</span></h2>
+          <p data-i18n="celebration_description">Cada dia tem um motivo pra celebrar, mas nós gostamos das coisas extra de vez em quando, e esse é o momento.</p>
+          <div class="details" id="encontro">
             <div class="detail">
-              <span>quando</span>
-              <span><strong>21 de novembro</strong><br>sáb · 18h30</span>
+              <span data-i18n="when">quando</span>
+              <span><strong data-i18n="date">21 de novembro</strong><br><span data-i18n="day_time">sáb · 18h30</span></span>
             </div>
             <div class="detail">
-              <span>onde</span>
-              <span><strong>Salão de festas</strong><br>Avenida General Barreto Viana, 1268<br>Porto Alegre · RS</span>
+              <span data-i18n="where">onde</span>
+              <span><strong data-i18n="venue">Salão de festas</strong><br>Avenida General Barreto Viana, 1268<br>Porto Alegre · RS</span>
             </div>
             <div class="detail">
-              <span>vestir</span>
+              <span data-i18n="dress">vestir</span>
               <span><strong>Cocktail chic</strong></span>
             </div>
           </div>
           <br>
-          <a class="outline" href="https://www.google.com/maps/search/?api=1&query=Avenida+General+Barreto+Viana%2C+1268%2C+Porto+Alegre%2C+RS" target="_blank" rel="noopener">abrir no Google Maps ↗</a>
+          <a class="outline" href="https://www.google.com/maps/search/?api=1&query=Avenida+General+Barreto+Viana%2C+1268%2C+Porto+Alegre%2C+RS" target="_blank" rel="noopener" data-i18n="maps">abrir no Google Maps ↗</a>
         </div>
       </div>
     </section>
@@ -227,8 +239,8 @@
     <section class="section" id="rio">
       <div class="grid">
         <div class="grid-copy copy reveal">
-          <h2 class="title">A vida é <br><span class="title terra">um carnaval.</span></h2>
-          <p>Depois de celebrar com vocês, vamos celebrar ainda mais com nossa família no Rio de Janeiro.</p>
+          <h2 class="title" data-i18n-leading="rio_title_a">A vida é <br><span class="title terra" data-i18n="rio_title_b">um carnaval.</span></h2>
+          <p data-i18n="rio_description">Depois de celebrar com vocês, vamos celebrar ainda mais com nossa família no Rio de Janeiro.</p>
         </div>
         <div class="grid-art rio-art reveal-art" style="background-image:url('imgs/rio1.png')"></div>
       </div>
@@ -236,38 +248,38 @@
 
     <section class="section pix" id="pix">
       <div class="pix-header copy reveal">
-        <h2 class="title">Lua de mel no Rio</h2>
-        <p>Você pode fazer parte dessa viagem.</p>
+        <h2 class="title" data-i18n="honeymoon_title">Lua de mel no Rio</h2>
+        <p data-i18n="honeymoon_description">Você pode fazer parte dessa viagem.</p>
       </div>
 
       <div class="pix-grid">
         <div class="pix-option reveal">
           <div class="pix-paint" style="background-image:url('imgs/pix1.png')"></div>
-          <div class="pix-caption">Um dia na praia<span>R$ 150</span></div>
+          <div class="pix-caption" data-i18n-leading="gift_beach">Um dia na praia<span>R$ 150</span></div>
         </div>
         <div class="pix-option reveal">
           <div class="pix-paint" style="background-image:url('imgs/pix2.png')"></div>
-          <div class="pix-caption">Um jantar no Rio<span>R$ 300</span></div>
+          <div class="pix-caption" data-i18n-leading="gift_dinner">Um jantar no Rio<span>R$ 300</span></div>
         </div>
         <div class="pix-option reveal">
           <div class="pix-paint" style="background-image:url('imgs/pix3.png')"></div>
-          <div class="pix-caption">Uma experiência única<span>R$ 500</span></div>
+          <div class="pix-caption" data-i18n-leading="gift_experience">Uma experiência única<span>R$ 500</span></div>
         </div>
         <div class="pix-option reveal">
           <div class="pix-paint" style="background-image:url('imgs/pix4.png')"></div>
-          <div class="pix-caption">Outro valor<span>você escolhe</span></div>
+          <div class="pix-caption" data-i18n-leading="gift_other">Outro valor<span data-i18n="gift_choose">você escolhe</span></div>
         </div>
       </div>
 
       <div class="pix-card reveal">
-        <div class="pix-label">ou, se preferir</div>
+        <div class="pix-label" data-i18n="pix_intro">ou, se preferir</div>
         <div class="pix-name">Adriano Silva dos Anjos</div>
         <div class="pix-key">zuzdri@gmail.com</div>
-        <button class="copy-btn" id="copyPix">Copiar chave Pix</button>
-        <div class="copied" id="copyConfirm" aria-live="polite">Chave Pix copiada ♥</div>
-        <a class="wise-btn" href="https://wise.com/pay/me/adrianos640" target="_blank" rel="noopener noreferrer" aria-label="Enviar presente pela Wise (abre em nova aba)">
-          <svg class="wise-logo" viewBox="0 0 24 24" role="img" aria-label="Logo Wise" xmlns="http://www.w3.org/2000/svg"><path d="M6.488 7.469 0 15.05h11.585l1.301-3.576H7.922l3.033-3.507.01-.092L8.993 4.48h8.873l-6.878 18.925h4.706L24 .595H2.543l3.945 6.874Z"/></svg>
-          <span>Enviar pela Wise ↗</span>
+        <button class="copy-btn" id="copyPix" data-i18n="copy_pix">Copiar chave Pix</button>
+        <div class="copied" id="copyConfirm" aria-live="polite" data-i18n="pix_copied">Chave Pix copiada ♥</div>
+        <a class="wise-btn" href="https://wise.com/pay/me/adrianos640" target="_blank" rel="noopener noreferrer" aria-label="Enviar presente pela Wise (abre em nova aba)" data-i18n-aria-label="wise_link">
+          <svg class="wise-logo" viewBox="0 0 24 24" role="img" aria-label="Logo Wise" data-i18n-aria-label="wise_logo" xmlns="http://www.w3.org/2000/svg"><path d="M6.488 7.469 0 15.05h11.585l1.301-3.576H7.922l3.033-3.507.01-.092L8.993 4.48h8.873l-6.878 18.925h4.706L24 .595H2.543l3.945 6.874Z"/></svg>
+          <span data-i18n="wise_cta">Enviar pela Wise ↗</span>
         </a>
       </div>
     </section>
@@ -276,8 +288,8 @@
       <div class="section">
         <div class="close-art reveal-art"></div>
         <div class="reveal">
-          <div class="final">até lá ♥</div>
-          <div class="final-note">Mal podemos esperar para celebrar com vocês.</div>
+          <div class="final" data-i18n="farewell">até lá ♥</div>
+          <div class="final-note" data-i18n="farewell_message">Mal podemos esperar para celebrar com vocês.</div>
         </div>
       </div>
     </section>
@@ -309,20 +321,105 @@
     const menu = document.getElementById("menu");
     const panel = document.getElementById("panel");
 
+    const enTexts = {
+      loading: "our painting",
+      cover_intro: "a new chapter begins",
+      cover_message: "We want to celebrate our wedding, our union and our love with all our family and dear friends.",
+      open_invitation: "open invitation ↓",
+      language_selector: "Website language",
+      nav_yes: "We already said yes",
+      nav_meeting: "The gathering",
+      nav_rio: "Rio de Janeiro",
+      nav_honeymoon: "Honeymoon",
+      nav_end: "See you there",
+      celebration_image: "Hand-painted illustration of the celebration",
+      celebration_title_a: "The big day,",
+      celebration_title_b: "the celebration",
+      celebration_description: "Every day gives us a reason to celebrate, but every now and then we like to make things a little extra special. This is one of those moments.",
+      when: "when",
+      date: "November 21",
+      day_time: "Sat · 6:30 PM",
+      where: "where",
+      venue: "Event hall",
+      dress: "dress code",
+      maps: "open in Google Maps ↗",
+      rio_title_a: "Life is ",
+      rio_title_b: "a carnival.",
+      rio_description: "After celebrating with you, we'll keep the festivities going with our family in Rio de Janeiro.",
+      honeymoon_title: "Honeymoon in Rio",
+      honeymoon_description: "You can be part of this journey.",
+      gift_beach: "A day at the beach",
+      gift_dinner: "Dinner in Rio",
+      gift_experience: "A unique experience",
+      gift_other: "Another amount",
+      gift_choose: "your choice",
+      pix_intro: "or, if you prefer",
+      copy_pix: "Copy Pix key",
+      pix_copied: "Pix key copied ♥",
+      wise_link: "Send a gift via Wise (opens in a new tab)",
+      wise_logo: "Wise logo",
+      wise_cta: "Send via Wise ↗",
+      farewell: "see you there ♥",
+      farewell_message: "We can't wait to celebrate with you."
+    };
+    const ptTexts = {};
+    document.querySelectorAll("[data-i18n]").forEach(el => { ptTexts[el.dataset.i18n] = el.textContent; });
+    document.querySelectorAll("[data-i18n-leading]").forEach(el => { ptTexts[el.dataset.i18nLeading] = el.firstChild.nodeValue; });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach(el => { ptTexts[el.dataset.i18nAriaLabel] = el.getAttribute("aria-label"); });
+
+    function savedLanguage() {
+      try { return localStorage.getItem("zuedri-language") === "en" ? "en" : "pt"; }
+      catch (e) { return "pt"; }
+    }
+    function setLanguage(lang) {
+      const language = lang === "en" ? "en" : "pt";
+      const words = language === "en" ? enTexts : ptTexts;
+      document.documentElement.lang = language === "en" ? "en" : "pt-BR";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        if (words[el.dataset.i18n] !== undefined) el.textContent = words[el.dataset.i18n];
+      });
+      document.querySelectorAll("[data-i18n-leading]").forEach(el => {
+        if (words[el.dataset.i18nLeading] !== undefined) el.firstChild.nodeValue = words[el.dataset.i18nLeading];
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(el => {
+        if (words[el.dataset.i18nAriaLabel] !== undefined) el.setAttribute("aria-label", words[el.dataset.i18nAriaLabel]);
+      });
+      document.querySelectorAll(".lang-btn").forEach(button => {
+        const active = button.dataset.lang === language;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      updateMenuLabel();
+      try { localStorage.setItem("zuedri-language", language); } catch (e) { /* private browsing */ }
+    }
+    function updateMenuLabel() {
+      const isEnglish = document.documentElement.lang === "en";
+      const isOpen = panel.classList.contains("open");
+      menu.setAttribute("aria-label", isEnglish ? (isOpen ? "Close menu" : "Open menu") : (isOpen ? "Fechar menu" : "Abrir menu"));
+    }
+    document.querySelectorAll(".lang-btn").forEach(button => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+    setLanguage(savedLanguage());
+
+
     menu.addEventListener("click", () => {
       const o = panel.classList.toggle("open");
       menu.setAttribute("aria-expanded", o);
+      updateMenuLabel();
     });
 
     panel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
       panel.classList.remove("open");
       menu.setAttribute("aria-expanded", "false");
+      updateMenuLabel();
     }));
 
     document.addEventListener("click", e => {
       if (panel.classList.contains("open") && !panel.contains(e.target) && !menu.contains(e.target)) {
         panel.classList.remove("open");
         menu.setAttribute("aria-expanded", "false");
+        updateMenuLabel();
       }
     });
 
