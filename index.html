@@ -125,6 +125,16 @@
     .copied { height:18px; margin-top:9px; text-align:center; font-size:15px; opacity:0; }
     .copied.show { opacity:1; }
 
+    .rsvp { padding-top:20px; text-align:center; }
+    .rsvp-card { max-width:780px; margin:auto; padding:clamp(28px,5vw,55px); background:var(--cream); border:1px solid rgba(24,63,130,.15); box-shadow:9px 11px 0 rgba(24,63,130,.10); }
+    .rsvp-kicker { font-size:12px; text-transform:uppercase; letter-spacing:.19em; color:var(--terra); margin-bottom:22px; }
+    .rsvp-card .title { font-size:clamp(39px,5vw,62px); line-height:1.05; max-width:650px; margin:0 auto 20px; }
+    .rsvp-description { font-size:15px; line-height:1.7; max-width:570px; margin:0 auto 27px; }
+    .rsvp-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; max-width:540px; margin:auto; }
+    .rsvp-button { display:flex; align-items:center; justify-content:center; gap:11px; padding:15px 20px; border-radius:999px; background:#25d366; color:#083a1d; font:700 16px/1.25 var(--font-body); transition:transform .2s ease,filter .2s ease; min-height:56px; }
+    .rsvp-button:hover { transform:translateY(-2px); filter:brightness(.95); }
+    .rsvp-button:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
+    .rsvp-whatsapp { width:25px; height:25px; flex:none; }
     .closing { text-align:center; }
     .close-art { width:min(763px,88vw); aspect-ratio:763/623; background:center/contain no-repeat url("imgs/casal.png"); margin:0 auto; }
     .final { font-size:clamp(56px,6.8vw,84px); line-height:.84; margin:22px 0; }
@@ -162,6 +172,13 @@
       .pix-caption span { font-size:13px; }
       .pix-card { max-width:none; width:100%; padding:21px 18px; transform:none; margin-top:36px; text-align:center; }
       .copy-btn { padding:12px; font-size:13px; }
+      .rsvp { padding-top:10px; }
+      .rsvp-card { padding:30px 18px; }
+      .rsvp-kicker { font-size:11px; margin-bottom:16px; }
+      .rsvp-card .title { font-size:clamp(35px,9vw,46px); }
+      .rsvp-description { font-size:13px; }
+      .rsvp-actions { grid-template-columns:1fr; gap:11px; }
+      .rsvp-button { font-size:15px; }
       .closing { padding-top:30px; }
       .close-art { width:88vw; }
       .final { font-size:58px; margin:16px 0; }
@@ -302,6 +319,24 @@
       </div>
     </section>
 
+    <section class="section rsvp" id="confirmacao">
+      <div class="rsvp-card reveal">
+        <div class="rsvp-kicker" data-i18n="rsvp_kicker">um encontro especial</div>
+        <h2 class="title" data-i18n="rsvp_title">Você vem celebrar com a gente?</h2>
+        <p class="rsvp-description" data-i18n="rsvp_description">Sua presença vai deixar esse dia ainda mais especial. Confirme até 30/11/2026 pelo WhatsApp de um de nós. ♥</p>
+        <div class="rsvp-actions">
+          <a class="rsvp-button" data-rsvp-person="adriano" href="https://wa.me/5551996583558" target="_blank" rel="noopener noreferrer" aria-label="Confirmar presença com Adriano no WhatsApp" data-i18n-aria-label="rsvp_aria_adriano">
+            <svg class="rsvp-whatsapp" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.8-4.1-3.8-.3-.5.3-.6.8-1.6.1-.2.1-.4 0-.6l-.9-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-1.7 1.8-1.3 3.8.2 5.8 2 2.8 4.3 4.3 7.2 5.2 1.4.4 2.6.4 3.5.3 1.1-.2 2.1-1 2.4-2 .1-.4.1-.8 0-.9-.1-.1-.3-.2-.6-.4z"/></svg>
+            <span>Adriano</span>
+          </a>
+          <a class="rsvp-button" data-rsvp-person="zuzana" href="https://wa.me/5551997354903" target="_blank" rel="noopener noreferrer" aria-label="Confirmar presença com Zuzana no WhatsApp" data-i18n-aria-label="rsvp_aria_zuzana">
+            <svg class="rsvp-whatsapp" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.8-4.1-3.8-.3-.5.3-.6.8-1.6.1-.2.1-.4 0-.6l-.9-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-1.7 1.8-1.3 3.8.2 5.8 2 2.8 4.3 4.3 7.2 5.2 1.4.4 2.6.4 3.5.3 1.1-.2 2.1-1 2.4-2 .1-.4.1-.8 0-.9-.1-.1-.3-.2-.6-.4z"/></svg>
+            <span>Zuzana</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="closing" id="fim">
       <div class="section">
         <div class="close-art reveal-art"></div>
@@ -377,6 +412,11 @@
       wise_link: "Send a gift via Wise (opens in a new tab)",
       wise_logo: "Wise logo",
       wise_cta: "Send via Wise ↗",
+      rsvp_kicker: "a special gathering",
+      rsvp_title: "Will you celebrate with us?",
+      rsvp_description: "Your presence will make our day even more special. Please RSVP by November 30, 2026, via WhatsApp. ♥",
+      rsvp_aria_adriano: "RSVP with Adriano on WhatsApp",
+      rsvp_aria_zuzana: "RSVP with Zuzana on WhatsApp",
       farewell: "see you there ♥",
       farewell_message: "We can't wait to celebrate with you."
     };
@@ -384,6 +424,18 @@
     document.querySelectorAll("[data-i18n]").forEach(el => { ptTexts[el.dataset.i18n] = el.textContent; });
     document.querySelectorAll("[data-i18n-leading]").forEach(el => { ptTexts[el.dataset.i18nLeading] = el.firstChild.nodeValue; });
     document.querySelectorAll("[data-i18n-aria-label]").forEach(el => { ptTexts[el.dataset.i18nAriaLabel] = el.getAttribute("aria-label"); });
+
+    const rsvpTexts = {
+      pt: "Olá! Quero confirmar minha presença no casamento de Zuzana e Adriano, dia 21/11/2026. ♥",
+      en: "Hello! I'd like to RSVP for Zuzana and Adriano's wedding on November 21, 2026. ♥"
+    };
+    function updateRsvpLinks(language) {
+      const numbers = { adriano:"5551996583558", zuzana:"5551997354903" };
+      document.querySelectorAll("[data-rsvp-person]").forEach(link => {
+        const phone = numbers[link.dataset.rsvpPerson];
+        link.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(rsvpTexts[language]);
+      });
+    }
 
     function savedLanguage() {
       try { return localStorage.getItem("zuedri-language") === "en" ? "en" : "pt"; }
@@ -408,6 +460,7 @@
         button.setAttribute("aria-pressed", String(active));
       });
       updateMenuLabel();
+      updateRsvpLinks(language);
       try { localStorage.setItem("zuedri-language", language); } catch (e) { /* private browsing */ }
     }
     function updateMenuLabel() {
