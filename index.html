@@ -19,7 +19,7 @@
     }
 
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; scroll-padding-top:70px; }
+    html { scroll-behavior:smooth; scroll-padding-top:92px; }
     body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); font-size:15px; font-weight:400; overflow-x:hidden; }
     h1,h2,.cover-top,.cover-names,.logo,.hero-note,.hand,.pix-caption,.pix-name,.final,.final-note,.loader-word { font-family:var(--font-display); font-weight:400; }
     button,a { font:inherit; }
@@ -43,7 +43,7 @@
     .opening .stroke-a { width:30vw; height:58px; left:-7vw; top:23%; background:var(--terra); opacity:.14; transform:rotate(-10deg); }
     .opening .stroke-b { width:25vw; height:48px; right:-6vw; bottom:19%; background:var(--ink); opacity:.12; transform:rotate(9deg); }
     .cover { width:100%; min-height:100svh; display:flex; align-items:center; justify-content:center; }
-    .cover-inner { width:min(96vw,1200px); min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:28px 20px; }
+    .cover-inner { width:min(96vw,1200px); min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 20px 28px; }
     .cover-top { font:400 23px var(--font-display); color:var(--terra); margin-bottom:8px; }
     .cover-art { width:min(78vw,920px); height:min(58vh,620px); min-height:340px; background:center/contain no-repeat url("imgs/casal.png"); }
     .cover-names { font:400 clamp(64px,6.2vw,98px)/.78 var(--font-display); margin:4px 0 2px; }
@@ -53,15 +53,15 @@
     .open-btn:hover { background:var(--ink); color:var(--cream); }
 
     main { max-width:var(--max); margin:auto; position:relative; }
-    .topbar { position:fixed; top:0; left:50%; transform:translateX(-50%); z-index:40; width:min(calc(100% - 34px),var(--max)); padding:16px 0; display:flex; justify-content:space-between; align-items:center; }
-    .logo { font:400 30px var(--font-display); }
-    .menu { border:0; background:transparent; color:var(--ink); font-size:15px; }
-    .top-actions { display:flex; align-items:center; gap:13px; }
+    .topbar { position:fixed; top:0; left:0; z-index:40; width:100%; min-height:76px; padding:12px max(22px, calc((100vw - var(--max))/2 + 22px)); display:flex; justify-content:space-between; align-items:center; gap:16px; background:rgba(244,234,216,.97); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid rgba(24,63,130,.12); }
+    .logo { font:400 30px var(--font-display); flex:none; line-height:1; white-space:nowrap; }
+    .menu { border:0; background:transparent; color:var(--ink); font-size:18px; min-width:34px; min-height:34px; display:grid; place-items:center; }
+    .top-actions { display:flex; align-items:center; gap:13px; flex:none; }
     .lang-switch { display:inline-flex; align-items:center; gap:2px; padding:3px; border:1px solid rgba(24,63,130,.32); border-radius:999px; background:rgba(255,249,237,.94); }
     .lang-btn { border:0; border-radius:999px; background:transparent; color:var(--ink); font:400 12px/1 var(--font-body); min-width:37px; min-height:30px; padding:8px; transition:background-color .2s ease,color .2s ease; }
     .lang-btn.is-active { background:var(--ink); color:var(--cream); }
     .lang-btn:focus-visible { outline:2px solid var(--terra); outline-offset:2px; }
-    .panel { position:fixed; z-index:45; right:18px; top:58px; width:min(290px,calc(100% - 36px)); padding:12px 18px; background:rgba(255,249,237,.97); border:1px solid rgba(24,63,130,.18); box-shadow:0 20px 60px rgba(50,35,20,.13); opacity:0; transform:translateY(-10px); pointer-events:none; transition:.25s; }
+    .panel { position:fixed; z-index:45; right:18px; top:80px; width:min(290px,calc(100% - 36px)); padding:12px 18px; background:rgba(255,249,237,.97); border:1px solid rgba(24,63,130,.18); box-shadow:0 20px 60px rgba(50,35,20,.13); opacity:0; transform:translateY(-10px); pointer-events:none; transition:.25s; }
     .panel.open { opacity:1; transform:none; pointer-events:auto; }
     .panel a { display:block; padding:13px 2px; border-bottom:1px dashed rgba(24,63,130,.2); font-size:15px; }
     .progress { position:fixed; z-index:60; left:0; top:0; width:100%; height:2px; background:rgba(24,63,130,.08); }
@@ -87,6 +87,8 @@
     .outline { display:inline-flex; align-items:center; justify-content:center; border:1.5px solid var(--ink); border-radius:999px; padding:11px 20px; margin-top:12px; font-size:15px; }
 
     .pix { text-align:center; }
+    #rio { padding-bottom:20px; }
+    #pix { padding-top:28px; }
     .pix-header { max-width:700px; margin:0 auto 35px; }
     .pix-header .title { margin-bottom:20px; }
     .pix-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; margin:0 auto; max-width:1080px; }
@@ -95,9 +97,7 @@
     .pix-caption { margin-top:9px; font-size:28px; line-height:1.15; color:var(--ink); }
     .pix-caption span { display:block; font:400 15px/1.5 var(--font-body); letter-spacing:.06em; margin-top:3px; color:var(--terra); }
     .pix-card { position:relative; z-index:2; background:var(--cream); padding:25px; max-width:700px; width:calc(100% - 20px); box-shadow:8px 10px 0 rgba(24,63,130,.1); transform:rotate(-1deg); margin:42px auto 0; text-align:center; }
-    .pix-label { font-size:15px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); }
-    .pix-name { font-size:38px; margin:15px 0 5px; white-space:nowrap; }
-    .pix-key { font-size:15px; margin-bottom:18px; }
+    .pix-label { font-size:15px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); margin-bottom:16px; }
     .copy-btn { width:100%; border:0; background:var(--terra); color:var(--cream); padding:14px; border-radius:999px; font-size:15px; }
     .wise-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:12px 18px; margin-top:13px; border-radius:999px; background:#9fe870; color:#163300; font:700 17px/1.3 Arial,Helvetica,sans-serif; transition:filter .2s ease,transform .2s ease; }
     .wise-btn:hover { filter:brightness(.95); transform:translateY(-1px); }
@@ -117,12 +117,15 @@
 
     @media(max-width:760px) {
       body { font-size:13px; }
-      .topbar { padding:13px 16px; }
-      .logo { font-size:27px; }
-      .menu { font-size:15px; }
+      .topbar { min-height:68px; padding:10px 18px; }
+      .logo { font-size:25px; }
+      .menu { font-size:18px; min-width:32px; }
       .top-actions { gap:8px; }
       .lang-btn { min-width:34px; min-height:29px; font-size:11px; padding:7px; }
       .section { padding:52px 18px; }
+      #rio { padding-bottom:0; }
+      #pix { padding-top:8px; }
+      .panel { top:70px; }
       .grid,.grid.swap { display:flex; flex-direction:column; gap:10px; }
       .grid>* { width:100%; }
       .grid-copy,.grid-art,.grid.swap .grid-copy,.grid.swap .grid-art { order:initial!important; }
@@ -139,14 +142,12 @@
       .pix-caption { font-size:25px; margin-top:7px; }
       .pix-caption span { font-size:13px; }
       .pix-card { max-width:none; width:100%; padding:21px 18px; transform:none; margin-top:36px; text-align:center; }
-      .pix-name { font-size:29px; white-space:nowrap; }
-      .pix-key { font-size:13px; margin-bottom:14px; }
       .copy-btn { padding:12px; font-size:13px; }
       .closing { padding-top:30px; }
       .close-art { width:88vw; }
       .final { font-size:58px; margin:16px 0; }
       .final-note { font-size:31px; }
-      .cover-inner { padding:18px 12px; }
+      .cover-inner { padding:100px 12px 32px; }
       .cover-top { font-size:21px; margin-bottom:4px; }
       .cover-art { width:min(92vw,560px); height:52svh; min-height:250px; max-height:420px; }
       .cover-names { font-size:clamp(52px,14.5vw,72px); line-height:.78; }
@@ -273,11 +274,9 @@
 
       <div class="pix-card reveal">
         <div class="pix-label" data-i18n="pix_intro">ou, se preferir</div>
-        <div class="pix-name">Adriano Silva dos Anjos</div>
-        <div class="pix-key">zuzdri@gmail.com</div>
         <button class="copy-btn" id="copyPix" data-i18n="copy_pix">Copiar chave Pix</button>
         <div class="copied" id="copyConfirm" aria-live="polite" data-i18n="pix_copied">Chave Pix copiada ♥</div>
-        <a class="wise-btn" href="https://wise.com/pay/me/adrianos640" target="_blank" rel="noopener noreferrer" aria-label="Enviar presente pela Wise (abre em nova aba)" data-i18n-aria-label="wise_link">
+        <a class="wise-btn" href="https://wise.com/pay/me/zuzanas502" target="_blank" rel="noopener noreferrer" aria-label="Enviar presente pela Wise (abre em nova aba)" data-i18n-aria-label="wise_link">
           <svg class="wise-logo" viewBox="0 0 24 24" role="img" aria-label="Logo Wise" data-i18n-aria-label="wise_logo" xmlns="http://www.w3.org/2000/svg"><path d="M6.488 7.469 0 15.05h11.585l1.301-3.576H7.922l3.033-3.507.01-.092L8.993 4.48h8.873l-6.878 18.925h4.706L24 .595H2.543l3.945 6.874Z"/></svg>
           <span data-i18n="wise_cta">Enviar pela Wise ↗</span>
         </a>
@@ -316,7 +315,7 @@
       document.fonts ? document.fonts.ready : Promise.resolve()
     ]).then(() => setTimeout(() => document.getElementById("loading").classList.add("done"), 500));
 
-    document.getElementById("open").addEventListener("click", () => window.scrollTo({ top:window.innerHeight, behavior:"smooth" }));
+    document.getElementById("open").addEventListener("click", () => document.getElementById("celebracao").scrollIntoView({ behavior:"smooth", block:"start" }));
 
     const menu = document.getElementById("menu");
     const panel = document.getElementById("panel");
@@ -444,7 +443,7 @@
     const confirm = document.getElementById("copyConfirm");
 
     btn.addEventListener("click", async () => {
-      const key = "zuzdri@gmail.com";
+      const key = "adriano.anjos@gmail.com";
 
       try {
         await navigator.clipboard.writeText(key);
