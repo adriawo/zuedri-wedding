@@ -438,11 +438,10 @@
     }
 
     function savedLanguage() {
-      // Explicit shared links take priority over previous browser preferences.
+      // Shared links without a lang parameter always open in Portuguese.
+      // This also ensures short URLs redirecting to the homepage open in PT.
       const requested = new URLSearchParams(window.location.search).get("lang");
-      if (requested === "en" || requested === "pt") return requested;
-      try { return localStorage.getItem("zuedri-language") === "en" ? "en" : "pt"; }
-      catch (e) { return "pt"; }
+      return requested === "en" ? "en" : "pt";
     }
     function setLanguage(lang) {
       const language = lang === "en" ? "en" : "pt";
@@ -472,7 +471,14 @@
       menu.setAttribute("aria-label", isEnglish ? (isOpen ? "Close menu" : "Open menu") : (isOpen ? "Fechar menu" : "Abrir menu"));
     }
     document.querySelectorAll(".lang-btn").forEach(button => {
-      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+      button.addEventListener("click", () => {
+        const language = button.dataset.lang;
+        setLanguage(language);
+        // Keep the chosen language in the address bar so refresh retains it.
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", language);
+        window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      });
     });
     setLanguage(savedLanguage());
 
