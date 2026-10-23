@@ -438,6 +438,9 @@
     }
 
     function savedLanguage() {
+      // Explicit shared links take priority over previous browser preferences.
+      const requested = new URLSearchParams(window.location.search).get("lang");
+      if (requested === "en" || requested === "pt") return requested;
       try { return localStorage.getItem("zuedri-language") === "en" ? "en" : "pt"; }
       catch (e) { return "pt"; }
     }
