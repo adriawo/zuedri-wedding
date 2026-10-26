@@ -373,6 +373,7 @@
     </section>
   </main>
 
+  <script src="drinks-config.js"></script>
   <script>
     const assets = [
       "imgs/casal.png",
@@ -534,7 +535,8 @@
 
 
     // Set this to the deployed Google Apps Script web app URL after verification.
-    const DRINKS_ENDPOINT = "";
+    const DRINKS_ENDPOINT = typeof window.DRINKS_ENDPOINT === "string" ? window.DRINKS_ENDPOINT.trim() : "";
+    const drinksConfigured = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(DRINKS_ENDPOINT);
     const drinkInputs = Array.from({length:4},(_,i)=>document.getElementById("drink"+i));
     const drinksBar = document.querySelectorAll(".drinks-bar span");
     const drinksSober = document.getElementById("drinksSober");
@@ -542,33 +544,120 @@
     const drinksStatus = document.getElementById("drinksStatus");
     const drinksSubmit = document.getElementById("drinksSubmit");
     let drinkValues = [40,25,20,15];
-    function renderDrinks(){drinkInputs.forEach((input,i)=>{input.value=drinkValues[i];input.closest(".drinks-row").querySelector("output").textContent=drinkValues[i]+"%";drinksBar[i].style.width=drinkValues[i]+"%";});}
-    drinkInputs.forEach((input,index)=>input.addEventListener("input",()=>{
-      const target=Number(input.value),rest=100-target;
-      const oldOther=drinkValues.reduce((sum,value,i)=>sum+(i===index?0:value),0);
-      const next=drinkValues.map((value,i)=>i===index?target:oldOther?Math.floor(value*rest/oldOther):Math.floor(rest/3));
+    let drinkStatus = drinksConfigured ? "ready" : "unavailable";
+    let pendingDrinkId = null;
+
+    function drinkLanguage() { return document.documentElement.lang === "en" ? "en" : "pt"; }
+    const drinkMessages = {
+      pt: {
+        unavailable:"Pesquisa em preparação. O envio será liberado em breve.",
+        ready:"Pronto para enviar sua preferência.",
+        sending:"Enviando...",
+        saved:"Obrigado! Suas preferências foram salvas.",
+        error:"Não foi possível confirmar o envio. Confira sua conexão e tente novamente."
+      },
+      en: {
+        unavailable:"Survey coming soon. Submissions will open shortly.",
+        ready:"Ready to submit your preferences.",
+        sending:"Sending...",
+        saved:"Thank you! Your preferences were saved.",
+        error:"We couldn't confirm your response. Check your connection and try again."
+      }
+    };
+    function renderDrinkStatus() {
+      drinksStatus.textContent = drinkMessages[drinkLanguage()][drinkStatus];
+      drinksSubmit.disabled = !drinksConfigured || drinkStatus === "sending" || drinkStatus === "saved";
+    }
+    function editableDrinkState() {
+      pendingDrinkId = null;
+      drinkStatus = drinksConfigured ? "ready" : "unavailable";
+      renderDrinkStatus();
+    }
+    function renderDrinks() {
+      drinkInputs.forEach((input,i) => {
+        input.value = drinkValues[i];
+        input.closest(".drinks-row").querySelector("output").textContent = drinkValues[i]+"%";
+        drinksBar[i].style.width = drinkValues[i]+"%";
+      });
+    }
+    drinkInputs.forEach((input,index) => input.addEventListener("input",() => {
+      const target=Number(input.value), rest=100-target;
+      const oldOther=drinkValues.reduce((sum,value,i) => sum+(i===index?0:value),0);
+      const next=drinkValues.map((value,i) =>
+        i===index ? target : oldOther ? Math.floor(value*rest/oldOther) : Math.floor(rest/3));
       let remainder=100-next.reduce((sum,value)=>sum+value,0);
-      for(let i=0;remainder>0;i=(i+1)%4){if(i!==index){next[i]++;remainder--;}}
-      drinkValues=next;renderDrinks();
+      for(let i=0;remainder>0;i=(i+1)%4) if(i!==index){next[i]++;remainder--;}
+      drinkValues=next;
+      renderDrinks();
+      editableDrinkState();
     }));
-    drinksSober.addEventListener("change",()=>{drinksControls.hidden=drinksSober.checked;});
+    drinksSober.addEventListener("change", () => {
+      drinksControls.hidden=drinksSober.checked;
+      editableDrinkState();
+    });
+    document.getElementById("drinksName").addEventListener("input",editableDrinkState);
+
+    function makeDrinkVoteId() {
+      if(window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+      return Date.now().toString(36)+"-"+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+    }
+    function submitDrinkVote(vote) {
+      return new Promise((resolve,reject) => {
+        const callbackName="__drinkCb"+Date.now().toString(36)+Math.random().toString(36).slice(2,13);
+        const address=new URL(DRINKS_ENDPOINT);
+        address.searchParams.set("callback",callbackName);
+        address.searchParams.set("data",JSON.stringify(vote));
+        address.searchParams.set("_",Date.now().toString(36));
+        const script=document.createElement("script");
+        script.referrerPolicy="no-referrer";
+        let completed=false;
+        const timeout=window.setTimeout(()=>complete(new Error("Timeout")),16000);
+        function complete(error,result) {
+          if(completed)return;
+          completed=true;
+          window.clearTimeout(timeout);
+          script.remove();
+          delete window[callbackName];
+          if(error)reject(error);
+          else resolve(result);
+        }
+        window[callbackName]=result=>{
+          if(result && result.status==="ok")complete(null,result);
+          else complete(new Error("Server rejected vote"));
+        };
+        script.onerror=()=>complete(new Error("Network error"));
+        script.src=address.toString();
+        document.head.appendChild(script);
+      });
+    }
     renderDrinks();
-    drinksSubmit.disabled=!DRINKS_ENDPOINT;
-    document.getElementById("drinksForm").addEventListener("submit",async event=>{
+    renderDrinkStatus();
+    document.querySelectorAll(".lang-btn").forEach(button => button.addEventListener("click",renderDrinkStatus));
+
+    document.getElementById("drinksForm").addEventListener("submit",async event => {
       event.preventDefault();
-      if(!DRINKS_ENDPOINT)return;
-      const payload={name:document.getElementById("drinksName").value.trim(),sober:drinksSober.checked,chope:drinksSober.checked?0:drinkValues[0],white:drinksSober.checked?0:drinkValues[1],red:drinksSober.checked?0:drinkValues[2],sparkling:drinksSober.checked?0:drinkValues[3]};
-      drinksSubmit.disabled=true;
-      drinksStatus.textContent=document.documentElement.lang==="en"?"Sending...":"Enviando...";
-      try{
-        // Apps Script web apps redirect POST requests; no-cors avoids false CORS failures.
-        // No success is claimed without a verifiable response from the server.
-        const response=await fetch(DRINKS_ENDPOINT,{method:"POST",body:JSON.stringify(payload),headers:{"Content-Type":"text/plain;charset=utf-8"}});
-        if(!response.ok)throw new Error("HTTP "+response.status);
-        const result=await response.json();
-        if(result.status!=="ok")throw new Error("Not confirmed");
-        drinksStatus.textContent=document.documentElement.lang==="en"?"Thank you! Your preferences were saved.":"Obrigado! Suas preferências foram salvas.";
-      }catch(error){drinksStatus.textContent=document.documentElement.lang==="en"?"Could not confirm submission. Please try again later.":"Não foi possível confirmar o envio. Tente novamente mais tarde.";drinksSubmit.disabled=false;}
+      if(!drinksConfigured || drinkStatus==="sending" || drinkStatus==="saved")return;
+      if(!pendingDrinkId)pendingDrinkId=makeDrinkVoteId();
+      const sober=drinksSober.checked;
+      const payload={
+        id:pendingDrinkId,
+        name:document.getElementById("drinksName").value.trim(),
+        sober:sober,
+        chope:sober?0:drinkValues[0],
+        white:sober?0:drinkValues[1],
+        red:sober?0:drinkValues[2],
+        sparkling:sober?0:drinkValues[3]
+      };
+      drinkStatus="sending";
+      renderDrinkStatus();
+      try {
+        await submitDrinkVote(payload);
+        pendingDrinkId=null;
+        drinkStatus="saved";
+      } catch(error) {
+        drinkStatus="error";
+      }
+      renderDrinkStatus();
     });
 
     const bar = document.getElementById("progressBar");
