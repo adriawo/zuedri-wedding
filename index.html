@@ -554,14 +554,20 @@
         ready:"Pronto para enviar sua preferência.",
         sending:"Enviando...",
         saved:"Obrigado! Suas preferências foram salvas.",
-        error:"Não foi possível salvar sua resposta. Estamos verificando a integração. Tente novamente mais tarde."
+        error:"Não foi possível salvar sua resposta. Tente novamente.",
+        failedNetwork:"Não foi possível acessar o serviço de respostas. Confira se o Apps Script está publicado para qualquer pessoa.",
+        failedServer:"O serviço respondeu, mas não conseguiu gravar. Verifique a aba Execuções no Apps Script.",
+        failedTimeout:"O serviço demorou demais para responder. Confira a implantação e tente novamente."
       },
       en: {
         unavailable:"Survey coming soon. Submissions will open shortly.",
         ready:"Ready to submit your preferences.",
         sending:"Sending...",
         saved:"Thank you! Your preferences were saved.",
-        error:"Your response could not be saved. We are checking the integration. Please try again later."
+        error:"Your preferences could not be saved. Please try again.",
+        failedNetwork:"Could not reach the response service. Check the Apps Script deployment and public access.",
+        failedServer:"The service responded but could not save your answer. Check Apps Script execution logs.",
+        failedTimeout:"The service took too long to respond. Check the deployment and try again."
       }
     };
     function renderDrinkStatus() {
@@ -611,7 +617,7 @@
         const script=document.createElement("script");
         script.referrerPolicy="no-referrer";
         let completed=false;
-        const timeout=window.setTimeout(()=>complete(new Error("Timeout")),16000);
+        const timeout=window.setTimeout(()=>complete(new Error("TIMEOUT")),16000);
         function complete(error,result) {
           if(completed)return;
           completed=true;
@@ -623,9 +629,9 @@
         }
         window[callbackName]=result=>{
           if(result && result.status==="ok")complete(null,result);
-          else complete(new Error("Server rejected vote"));
+          else complete(new Error("SERVER_REJECTED"));
         };
-        script.onerror=()=>complete(new Error("Network error"));
+        script.onerror=()=>complete(new Error("NETWORK_FAILURE"));
         script.src=address.toString();
         document.head.appendChild(script);
       });
@@ -655,7 +661,9 @@
         pendingDrinkId=null;
         drinkStatus="saved";
       } catch(error) {
-        drinkStatus="error";
+        const reason=error && error.message;
+        drinkStatus=reason==="NETWORK_FAILURE"?"failedNetwork":reason==="SERVER_REJECTED"?"failedServer":reason==="TIMEOUT"?"failedTimeout":"error";
+        console.warn("Wedding survey submission failed:",reason);
       }
       renderDrinkStatus();
     });
