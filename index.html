@@ -197,7 +197,9 @@
       * { animation:none!important; transition:none!important; }
       .reveal,.reveal-art { opacity:1!important; transform:none!important; }
     }
-  </style>
+  
+    .drinks-card{max-width:690px;margin:0 auto;padding:clamp(24px,5vw,54px);border:1px solid rgba(116,83,63,.22);border-radius:24px;background:rgba(255,250,243,.78);text-align:center}.drinks-intro{max-width:490px;margin:12px auto 28px}.drinks-form{text-align:left;max-width:480px;margin:auto}.drinks-form label{display:block;margin-bottom:8px}.drinks-name{width:100%;box-sizing:border-box;border:1px solid #bba99c;border-radius:9px;padding:13px;background:#fffdf9;font:inherit;color:#45352e}.drinks-row{margin:20px 0}.drinks-row-head{display:flex;justify-content:space-between;gap:12px;font-size:15px}.drinks-row input{width:100%;accent-color:#a17456;cursor:pointer}.drinks-bar{display:flex;overflow:hidden;border-radius:20px;height:13px;margin:25px 0}.drinks-bar span:nth-child(1){background:#b88b43}.drinks-bar span:nth-child(2){background:#d8bc7b}.drinks-bar span:nth-child(3){background:#91536a}.drinks-bar span:nth-child(4){background:#d9a1a0}.drinks-sober{display:flex;align-items:center;gap:10px;margin:22px 0;cursor:pointer}.drinks-sober input{accent-color:#946849}.drinks-submit{display:block;margin:24px auto 0;border:0;border-radius:30px;padding:13px 28px;background:#83634d;color:white;font:inherit;cursor:pointer}.drinks-submit:disabled{opacity:.55;cursor:not-allowed}.drinks-status{min-height:24px;text-align:center;font-size:14px;margin-top:14px}.drinks-note{font-size:12px;opacity:.7;text-align:center;margin-top:8px}
+</style>
 </head>
 <body>
   <div class="loading" id="loading">
@@ -337,6 +339,29 @@
       </div>
     </section>
 
+
+    <section class="section" id="bebidas">
+      <div class="drinks-card reveal">
+        <div class="rsvp-kicker" data-i18n="drinks_kicker">um brinde especial</div>
+        <h2 class="title" data-i18n="drinks_title">Quer planejar as bebidas com a gente?</h2>
+        <p class="drinks-intro" data-i18n="drinks_intro">Conte o que você gosta de beber. Ao aumentar uma preferência, as outras se ajustam para somar 100%.</p>
+        <form class="drinks-form" id="drinksForm">
+          <label for="drinksName" data-i18n="drinks_name">Seu nome (opcional)</label>
+          <input id="drinksName" class="drinks-name" maxlength="100" autocomplete="name" data-i18n-placeholder="drinks_placeholder" placeholder="Como podemos chamar você?">
+          <label class="drinks-sober"><input type="checkbox" id="drinksSober"><span data-i18n="drinks_sober">Não bebo álcool</span></label>
+          <div id="drinksControls">
+            <div class="drinks-bar" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink0" data-i18n="drink_chope">Chope</label><output for="drink0">40%</output></div><input id="drink0" type="range" min="0" max="100" step="1" value="40"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink1" data-i18n="drink_white">Vinho branco</label><output for="drink1">25%</output></div><input id="drink1" type="range" min="0" max="100" step="1" value="25"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink2" data-i18n="drink_red">Vinho tinto</label><output for="drink2">20%</output></div><input id="drink2" type="range" min="0" max="100" step="1" value="20"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink3" data-i18n="drink_sparkling">Espumante</label><output for="drink3">15%</output></div><input id="drink3" type="range" min="0" max="100" step="1" value="15"></div>
+          </div>
+          <button class="drinks-submit" type="submit" id="drinksSubmit" disabled data-i18n="drinks_send">Enviar preferências</button>
+          <p class="drinks-status" id="drinksStatus" role="status" aria-live="polite" data-i18n="drinks_waiting">Pesquisa em preparação. O envio será liberado em breve.</p>
+          <p class="drinks-note" data-i18n="drinks_privacy">Seu nome é opcional. As respostas serão usadas apenas para planejar a festa.</p>
+        </form>
+      </div>
+    </section>
     <section class="closing" id="fim">
       <div class="section">
         <div class="close-art reveal-art"></div>
@@ -375,6 +400,8 @@
     const panel = document.getElementById("panel");
 
     const enTexts = {
+      drinks_kicker: "a special toast", drinks_title: "Want to help us plan the drinks?", drinks_intro: "Tell us what you like to drink. Increasing one preference automatically adjusts the others to total 100%.", drinks_name: "Your name (optional)", drinks_placeholder: "What should we call you?", drinks_sober: "I don't drink alcohol", drink_chope: "Draft beer", drink_white: "White wine", drink_red: "Red wine", drink_sparkling: "Sparkling wine", drinks_send: "Send preferences", drinks_waiting: "Survey coming soon. Submissions will open shortly.", drinks_privacy: "Your name is optional. Responses will only be used to plan the celebration.",
+
       loading: "our painting",
       cover_intro: "a new chapter begins",
       cover_message: "We want to celebrate our wedding, our union and our love with all our family and dear friends.",
@@ -424,6 +451,7 @@
     document.querySelectorAll("[data-i18n]").forEach(el => { ptTexts[el.dataset.i18n] = el.textContent; });
     document.querySelectorAll("[data-i18n-leading]").forEach(el => { ptTexts[el.dataset.i18nLeading] = el.firstChild.nodeValue; });
     document.querySelectorAll("[data-i18n-aria-label]").forEach(el => { ptTexts[el.dataset.i18nAriaLabel] = el.getAttribute("aria-label"); });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => { ptTexts[el.dataset.i18nPlaceholder] = el.placeholder; });
 
     const rsvpTexts = {
       pt: "Olá! Quero confirmar minha presença no casamento de Zuzana e Adriano, dia 21/11/2026. ♥",
@@ -447,6 +475,7 @@
       const language = lang === "en" ? "en" : "pt";
       const words = language === "en" ? enTexts : ptTexts;
       document.documentElement.lang = language === "en" ? "en" : "pt-BR";
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => { if(words[el.dataset.i18nPlaceholder]) el.placeholder=words[el.dataset.i18nPlaceholder]; });
       document.querySelectorAll("[data-i18n]").forEach(el => {
         if (words[el.dataset.i18n] !== undefined) el.textContent = words[el.dataset.i18n];
       });
@@ -501,6 +530,45 @@
         menu.setAttribute("aria-expanded", "false");
         updateMenuLabel();
       }
+    });
+
+
+    // Set this to the deployed Google Apps Script web app URL after verification.
+    const DRINKS_ENDPOINT = "";
+    const drinkInputs = Array.from({length:4},(_,i)=>document.getElementById("drink"+i));
+    const drinksBar = document.querySelectorAll(".drinks-bar span");
+    const drinksSober = document.getElementById("drinksSober");
+    const drinksControls = document.getElementById("drinksControls");
+    const drinksStatus = document.getElementById("drinksStatus");
+    const drinksSubmit = document.getElementById("drinksSubmit");
+    let drinkValues = [40,25,20,15];
+    function renderDrinks(){drinkInputs.forEach((input,i)=>{input.value=drinkValues[i];input.closest(".drinks-row").querySelector("output").textContent=drinkValues[i]+"%";drinksBar[i].style.width=drinkValues[i]+"%";});}
+    drinkInputs.forEach((input,index)=>input.addEventListener("input",()=>{
+      const target=Number(input.value),rest=100-target;
+      const oldOther=drinkValues.reduce((sum,value,i)=>sum+(i===index?0:value),0);
+      const next=drinkValues.map((value,i)=>i===index?target:oldOther?Math.floor(value*rest/oldOther):Math.floor(rest/3));
+      let remainder=100-next.reduce((sum,value)=>sum+value,0);
+      for(let i=0;remainder>0;i=(i+1)%4){if(i!==index){next[i]++;remainder--;}}
+      drinkValues=next;renderDrinks();
+    }));
+    drinksSober.addEventListener("change",()=>{drinksControls.hidden=drinksSober.checked;});
+    renderDrinks();
+    drinksSubmit.disabled=!DRINKS_ENDPOINT;
+    document.getElementById("drinksForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      if(!DRINKS_ENDPOINT)return;
+      const payload={name:document.getElementById("drinksName").value.trim(),sober:drinksSober.checked,chope:drinksSober.checked?0:drinkValues[0],white:drinksSober.checked?0:drinkValues[1],red:drinksSober.checked?0:drinkValues[2],sparkling:drinksSober.checked?0:drinkValues[3]};
+      drinksSubmit.disabled=true;
+      drinksStatus.textContent=document.documentElement.lang==="en"?"Sending...":"Enviando...";
+      try{
+        // Apps Script web apps redirect POST requests; no-cors avoids false CORS failures.
+        // No success is claimed without a verifiable response from the server.
+        const response=await fetch(DRINKS_ENDPOINT,{method:"POST",body:JSON.stringify(payload),headers:{"Content-Type":"text/plain;charset=utf-8"}});
+        if(!response.ok)throw new Error("HTTP "+response.status);
+        const result=await response.json();
+        if(result.status!=="ok")throw new Error("Not confirmed");
+        drinksStatus.textContent=document.documentElement.lang==="en"?"Thank you! Your preferences were saved.":"Obrigado! Suas preferências foram salvas.";
+      }catch(error){drinksStatus.textContent=document.documentElement.lang==="en"?"Could not confirm submission. Please try again later.":"Não foi possível confirmar o envio. Tente novamente mais tarde.";drinksSubmit.disabled=false;}
     });
 
     const bar = document.getElementById("progressBar");
