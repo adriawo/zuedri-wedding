@@ -27,3 +27,13 @@ O formulário do site está pronto, mas o GitHub Pages **não pode escrever em u
 ## Diagnóstico
 
 Se o botão estiver desabilitado, a URL do Apps Script ainda não está em `drinks-config.js`. Se houver erro, verifique a implantação de acesso "Qualquer pessoa", o log de execuções no Apps Script e a URL `/exec` (não `/dev`).
+
+## Importante: erro ao enviar / ambiente legado
+
+Se o convite mostrar **"Não foi possível salvar sua resposta"** e a aba Respostas continuar vazia, verifique o **ambiente de execução** do projeto Google Apps Script.
+
+O arquivo `Code.gs` usa JavaScript moderno e precisa do **ambiente Chrome V8**. No projeto Apps Script, abra **Configurações do projeto** e marque **Ativar ambiente de execução do Chrome V8** (ou configure `"runtimeVersion": "V8"` em `appsscript.json`). Salve.
+
+Depois, em **Implantar > Gerenciar implantações**, selecione a implantação ativa, clique no ícone de editar, escolha **Versão: Nova versão** e **Implantar**. Isso atualiza a implantação mantendo a URL pública `/exec` usada pelo site.
+
+Se persistir, abra **Execuções** no editor Apps Script para verificar mensagens do servidor e confirme que a implantação executa como **Eu** com acesso **Qualquer pessoa**. Não publique credenciais nem conceda acesso de edição à planilha para corrigir problemas no formulário.
