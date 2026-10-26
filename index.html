@@ -344,17 +344,17 @@
       <div class="drinks-card reveal">
         <div class="rsvp-kicker" data-i18n="drinks_kicker">um brinde especial</div>
         <h2 class="title" data-i18n="drinks_title">Quer planejar as bebidas com a gente?</h2>
-        <p class="drinks-intro" data-i18n="drinks_intro">Conte o que você gosta de beber. Ao aumentar uma preferência, as outras se ajustam para somar 100%.</p>
+        <p class="drinks-intro" data-i18n="drinks_intro">Conte o que você gosta de beber. Ao aumentar uma preferência, as outras se ajustam para somar 100 pontos.</p>
         <form class="drinks-form" id="drinksForm">
           <label for="drinksName" data-i18n="drinks_name">Seu nome (opcional)</label>
           <input id="drinksName" class="drinks-name" maxlength="100" autocomplete="name" data-i18n-placeholder="drinks_placeholder" placeholder="Como podemos chamar você?">
           <label class="drinks-sober"><input type="checkbox" id="drinksSober"><span data-i18n="drinks_sober">Não bebo álcool</span></label>
           <div id="drinksControls">
             <div class="drinks-bar" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-            <div class="drinks-row"><div class="drinks-row-head"><label for="drink0" data-i18n="drink_chope">Chope</label><output for="drink0">40%</output></div><input id="drink0" type="range" min="0" max="100" step="1" value="40"></div>
-            <div class="drinks-row"><div class="drinks-row-head"><label for="drink1" data-i18n="drink_white">Vinho branco</label><output for="drink1">25%</output></div><input id="drink1" type="range" min="0" max="100" step="1" value="25"></div>
-            <div class="drinks-row"><div class="drinks-row-head"><label for="drink2" data-i18n="drink_red">Vinho tinto</label><output for="drink2">20%</output></div><input id="drink2" type="range" min="0" max="100" step="1" value="20"></div>
-            <div class="drinks-row"><div class="drinks-row-head"><label for="drink3" data-i18n="drink_sparkling">Espumante</label><output for="drink3">15%</output></div><input id="drink3" type="range" min="0" max="100" step="1" value="15"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink0" data-i18n="drink_chope">Chope</label><output for="drink0">40</output></div><input id="drink0" type="range" min="0" max="100" step="1" value="40"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink1" data-i18n="drink_white">Vinho branco</label><output for="drink1">25</output></div><input id="drink1" type="range" min="0" max="100" step="1" value="25"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink2" data-i18n="drink_red">Vinho tinto</label><output for="drink2">20</output></div><input id="drink2" type="range" min="0" max="100" step="1" value="20"></div>
+            <div class="drinks-row"><div class="drinks-row-head"><label for="drink3" data-i18n="drink_sparkling">Espumante</label><output for="drink3">15</output></div><input id="drink3" type="range" min="0" max="100" step="1" value="15"></div>
           </div>
           <button class="drinks-submit" type="submit" id="drinksSubmit" disabled data-i18n="drinks_send">Enviar preferências</button>
           <p class="drinks-status" id="drinksStatus" role="status" aria-live="polite" data-i18n="drinks_waiting">Pesquisa em preparação. O envio será liberado em breve.</p>
@@ -401,7 +401,7 @@
     const panel = document.getElementById("panel");
 
     const enTexts = {
-      drinks_kicker: "a special toast", drinks_title: "Want to help us plan the drinks?", drinks_intro: "Tell us what you like to drink. Increasing one preference automatically adjusts the others to total 100%.", drinks_name: "Your name (optional)", drinks_placeholder: "What should we call you?", drinks_sober: "I don't drink alcohol", drink_chope: "Draft beer", drink_white: "White wine", drink_red: "Red wine", drink_sparkling: "Sparkling wine", drinks_send: "Send preferences", drinks_waiting: "Survey coming soon. Submissions will open shortly.", drinks_privacy: "Your name is optional. Responses will only be used to plan the celebration.",
+      drinks_kicker: "a special toast", drinks_title: "Want to help us plan the drinks?", drinks_intro: "Tell us what you like to drink. Increasing one preference automatically adjusts the others to total 100 points.", drinks_name: "Your name (optional)", drinks_placeholder: "What should we call you?", drinks_sober: "I don't drink alcohol", drink_chope: "Draft beer", drink_white: "White wine", drink_red: "Red wine", drink_sparkling: "Sparkling wine", drinks_send: "Send preferences", drinks_waiting: "Survey coming soon. Submissions will open shortly.", drinks_privacy: "Your name is optional. Responses will only be used to plan the celebration.",
 
       loading: "our painting",
       cover_intro: "a new chapter begins",
@@ -582,7 +582,7 @@
     function renderDrinks() {
       drinkInputs.forEach((input,i) => {
         input.value = drinkValues[i];
-        input.closest(".drinks-row").querySelector("output").textContent = drinkValues[i]+"%";
+        input.closest(".drinks-row").querySelector("output").textContent = drinkValues[i];
         drinksBar[i].style.width = drinkValues[i]+"%";
       });
     }
