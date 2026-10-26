@@ -7,7 +7,7 @@
  * API temporária de testes: uma URL pública permite enviar respostas.
  * Não insira senhas, tokens ou dados particulares neste código.
  */
-const DRINKS_SHEET_ID = "1FuSipSTJGKh2Yt_fp9IzioZf06roVaJOzKj89WKccNg";
+const DRINKS_SHEET_ID = "1LLsZireCOfRgnGtK3NWST5i_ntu-BBjO88qoG2xkMl4";
 const DRINKS_SHEET_TAB = "Respostas";
 
 function doGet(e) {
